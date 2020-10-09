@@ -1,0 +1,29 @@
+TLD1 Bill of Materials for 600mA output, X61 25:1 trimming
+
+U1: Texas Instruments TPS92510 [MSOP8]
+U2: Richtek RT9058-50GV [SOT23-3]
+U3: 74AHCT1G125S [SOT353]
+
+D1: 2A 40V Shottky diode [DO-214AC, Vishay SSA24 recommended]
+
+L1: 47uH [pads for Bourns SRR6028 series]
+
+All caps X5R multilayer ceramic
+C1: 106 35V [1206]
+C2: 105 10V [0603]
+C3: 104 10V [0603]
+C4: 223 6V  [0603]
+C5: 474 6V  [0603]
+C6: 103 6V  [0603]
+C7: 106 35V [1206]
+
+R1: 10k  [0603]
+R2: 10k  [0603]
+R3: 120k [0603]
+R4: 330k [0603]
+R5: 10k  [0603]
+R6: 1k   [1206]
+RA: 120k [0603] 
+RB: trim [0603] (1.2M to 1.8M)
+RC: .332 [1206]
+RD: none [1206]

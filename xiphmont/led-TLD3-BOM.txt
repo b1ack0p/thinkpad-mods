@@ -1,0 +1,27 @@
+Board layout TLD3 (revised 5/16/2016):
+
+U1: Texas Instruments TPS92510 [MSOP8]
+U2: Richtek RT9058-50GV [SOT23-3]
+U3: 74AHCT1G125S [SOT353]
+
+D1: 2A 40V [DO-214AC] Vishay-Dale SS24 preferred
+
+L1: 33uH [6028] Eaton/Coiltronics HCMA0703-330-R preferred
+
+C1: 106 35V [1206]
+C2: 474 25V [0603]
+C3: 104 50V [0603]
+C4: 223 50V [0603]
+C5: 104 50V [0603]
+C6: 105 50V [0603]
+C7: 106 35V [1206]
+
+R1: 10k  [0603]
+R2: 10k  [0603]
+R3: 10k  [0603]
+R4: 330k [0603]
+R5: 27k  [0603]
+R6: 1k   [1206]
+RA: 200k [3223] Bourns 3223J-1-204 preferred
+RB: 500k [3223] Bourns 3223J-1-504 preferred 
+RC: R332 [1206]

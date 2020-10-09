@@ -1,0 +1,3 @@
+Led Strip v1 and v2 Bill of Materials
+
+All LEDs: Nichia NSSW157F-HG bin Btc72P10d22

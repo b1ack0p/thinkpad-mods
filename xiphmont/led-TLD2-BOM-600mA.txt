@@ -1,0 +1,27 @@
+TLD2 Bill of Materials for 600mA output, X60 25:1 trimming
+
+U1: Richtek RT8450B [TSSOP16]
+U2: RT9058-50GV     [SOT353]
+U3: 74AHCT2G125DC   [8VSSOP]
+
+D1: 2A 40V Shottky diode [DO-214AC, Vishay SSA24 recommended]
+
+L1: 22uH [pads for Bourns SRR6028 series]
+
+All caps X5R multilayer ceramic
+C1: 106 35V [1206]
+C2: 105 10V [0805]
+C3: 103 10V [0603]
+C4: 332 10V [0603]
+C5: 474 6V  [0603]
+C6: 106 35V [1206]
+
+R1: 10k  [0603]
+R2: 10k  [0603]
+R3: 0    [0603]
+R4: 10k  [0603]
+R5: 1k   [1206]
+RA: trim [0603] (usually left open)
+RB: 390k [0603]
+RC: R332 [1206]
+RD: none [1206]

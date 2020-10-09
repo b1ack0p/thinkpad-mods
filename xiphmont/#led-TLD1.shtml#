@@ -1,0 +1,232 @@
+<!--#include virtual="header1.include" -->
+#toc_TLD1
+<!--#include virtual="header2.include" -->
+<h1>ThinkPad LED Driver #1</h1>
+<!--#include virtual="header3.include" -->
+
+<a href="led-parts.jpg">
+  <img class=rightpic src="led-parts.jpg" />
+</a>
+
+<h2>Everything Needed</h2>
+
+<p>Converting a CCFL-equipped Thinkpad to an LED backlight requires an
+LED backlight driver to replace the CCFL inverter, and an LED backlight
+strip to replace the CCFL tube.  It's also useful to have some thin
+plastic shims (made of a high temperature plastic like Mylar or
+Teflon) to help fit the LED strip snugly in place.<p>
+
+<p>The conversion kits below include all three items, which are also
+available as individual parts.  The parts and kits come in two basic
+flavors: the 'original' kit and the new 'daylight' kit.  From there,
+the needed LED driver also depends on the model of ThinkPad.</p>
+
+<hr />
+
+<h2>Original kit</h2>
+
+<ul>
+<li>Drop-in 335mA ThinkPad LED driver
+<li>LED strip using general purpose lighting LEDs
+<li>1.5mm x 300mm flat plastic shims
+</ul>
+
+<p>The original kit uses a decent Chinese white LED strip paired with
+one of my own driver boards.  The driver and LED strip are matched for
+a max output of 335mA, the rated limit of the LED strip. At
+full brightness, the LED strip uses 3.2W.</p>
+
+<p>This kit is recommended for TN screens and will also work well with
+AFFS XGA screens.  It is not recommended for SXGA screens, as most
+HV121P01-100 and HV121P01-101 will show a mirrored pattern of the
+light from the individual LEDs along the bottom inch or so along the
+bottom of the screen.</p>
+
+<a href="nichiastripv3se1.jpg">
+  <img class=rightpic src="nichiastripv3se1.jpg" />
+</a>
+
+<h2>Daylight kit</h2>
+
+<ul>
+<li>Drop-in 600mA Daylight ThinkPad LED driver
+<li>Daylight LED strip using <a href="NSSW157F-HG-E.pdf">Nichia NSSW157F-HG</a> LEDs
+<li>1.5mm x 300mm flat and accordian plastic shims
+</ul>
+
+<p>The Daylight kit is an upgrade intended for XGA and SXGA AFFS
+screens (i.e. "the really nice screens").  It pairs the new
+range-adjustable TLD3 driver board with a custom LED strip using Nichia's
+latest-generation component-phosphor LEDs designed specifically for
+backlights. It's two to three times as bright as the original kit with
+substantially improved <a href="led-gamut.shtml">gamut coverage exceeding the original CCFL</a>.</p>
+
+<p>The Nichia LEDs also allow daylight kits to run at a higher 600mA
+current compared to the original kit.  At full brightness the LED
+backlight uses 4.8W.</p>
+
+<p>Closely-packed, wide-angle, low-profile LEDs and the use of an
+accordian shim eliminate 99% of the 'rippling' pattern seen along the
+bottom of SXGA screens when using other strips.</p>
+
+<h2>Individual backlight drivers</h2>
+
+<p>LED backlight drivers are made by fitting custom LED driver boards
+to existing ThinkPad inverter PCBs in place of the CCFL step-up coil.
+This strategy leaves all the other functionality of the inverter board
+completely in-tact; the indicator LEDs still work, as do the sensors
+and pushbuttons on the tablet models.</p>
+
+<p>I currently use three different driver boards, imaginatively
+named <a href="led-TLD1.shtml">ThinkPad LED Driver
+1</a>, <a href="led-TLD2.shtml">ThinkPad LED Driver 2</a>,
+and <a href="led-TLD3.shtml">ThinkPad LED Driver 3</a>.</p>
+
+<p>TLD1 and TLD2 were the original test prototypes (which turned out
+to work perfectly.) TLD3 is an update of the TLD1 layout with upgraded
+components that increase efficiency by a percent or two and double the
+maximum power handling capacity. TLD3 also adds two surface mount
+potentiometers that allow the buyer to adjust the brightness range and
+step spacing.</p>
+
+<p>The <a href="led-TLD1.shtml">TLD1</a>, <a href="led-TLD2.shtml">TLD2</a>,
+and <a href="led-TLD3.shtml">TLD3</a> boards are available alone or
+pre-mounted to a ThinkPad inverter PCB.</p>
+
+<h2>Individual LED backlight strips</h2>
+
+
+
+<h2>Shims</h3>
+
+<a href="led-pcb-mouse.jpg">
+  <img class=rightpic src="led-pcb-mouse.jpg" />
+</a>
+
+<h2>Part Prices and Ordering</h2>
+<ul>
+  <li><b>Original LED Conversion Kit</b>: $25</li>
+  <li><b>Daylight LED Conversion Kit</b>: $48</li>
+  <li><b>TLD1, TLD2 driver PCB</b> (unpopulated PCB only): $5</li>
+  <li><b>TLD3 driver PCB</b> (unpopulated PCB only): $1</li>
+  <li><b>Assembled TLD driver</b> (not mounted on inverter): $15</li>
+  <li><b>Assembled TLD driver and inverter</b> (ready to plug in): $20</li>
+  <li><b>'Original' LED strip</b> (335mA): $5</li>
+  <li><b>'Daylight' LED strip</b> (600mA): $28</li>
+</ul>
+
+<p>Prices do not include shipping.  Domestic first-class postage within
+the USA is currently an additional $2.45.  International first class is $13.50.</p>
+
+<p>Please <a href="mailto:xiphmont@gmail.com">contact me</a> to place
+an order, even if you already know my PayPal address.  I make these
+parts on-demand by hand, so I want you to be aware of any backlog.</p>
+<p>Be sure to let me know what parts you want, original or daylight,
+and what ThinkPad model.</p>
+
+<hr />
+
+<h2>Installation instructions</h2>
+
+
+
+<h2>FAQ</h2>
+
+<a href="led-CCFLgamut.png">
+  <img class=rightpic src="led-CCFLgamut.png" />
+</a>
+
+<a href="led-NICHIAgamut.png">
+  <img class=rightpic style="clear: right;" src="led-NICHIAgamut.png" />
+</a>
+
+<h3>How bright can I expect an LED backlight to be?</h3>
+
+<p>It depends on the screen and the kit.  Using the same LED strip, TN
+screens are brightest, followed by the XGA AFFS screens, followed by
+the SXGA screens.</p>
+
+<p>An original kit can be expected to hit 400 nits in a TN
+screen and about 300 nits in an XGA AFFS screen.  A daylight kit will
+exceed 800 nits in an XGA screen, and reach somewhere between 550 and
+750 nits in an SXGA screen depending on how the strip is fitted.</p>
+
+<h3>Will colors look normal?</h3>
+
+<p>An 'original' kit produces less saturated colors than the
+original CCFL backlight.  Reds especially become somewhat muted.  The
+screen will not look especially odd, but it will look noticably less
+colorful.</p>
+
+<p>A 'daylight' kit produces significantly better color than the
+original CCFL, and comes much closer to ideal coverage of the standard
+sRGB gamut, especially with AFFS screens.</p>
+
+<h3>Is there any backlight flicker using these kits?</h3>
+
+<p>None at all. The LED driver board converts the ThinkPad's PWM
+brightness control signal to an analog level that regulates the
+LED current.  The LEDs are powered by a steady, continuous current
+across the entire brightness range.</p>
+
+<h3>Do the indicator LEDs still work normally?</h3>
+
+<p>Yes.  The status LEDs are unaffected by an LED upgrade.</p>
+
+<h3>Do the ThinkPad brightness controls work normally?</h3>
+
+<p>Yes. The custom driver boards are designed to use native ThinkPad brightness signaling.</p>
+
+<h3>Why do e.g. the X60 and X61 need different driver boards when they used the same CCFL inverter?</h3>
+
+<p>LEDs are so much brighter than CCFLs that it's important to make
+the brightness range and spacing as useful as possible.  For example,
+we don't want the minimum brightness to be too bright to use
+comfortably in dim lighting.</p>
+
+<p>CCFL ThinkPads all use the same brightness control system, but
+different ThinkPads use different brightness ranges and step
+spacing.  The X60, for example, uses a relatively narrow,
+exponentially spaced brightness range with 8 steps.  The X61 uses a
+different, wider, 16-step linear spacing.</p>
+
+<p>These spacings were designed to work with specific CCFL lamps. LEDs
+behave differently, especially at low brightness levels.  As a result,
+the LED driver boards must be 'trimmed' for the best behavior with a
+given model's brightness range.</p>
+
+<p>TLD1 and TLD2 boards are trimmed by soldering approriate resistors
+into the level translation circuit, so they're assembled for specific
+Thinkpad models.  The TLD3 board can be trimmed for any model via two
+potentiometers, but it's still shipped out pre-adjusted for a given
+model.</p>
+
+<h3>Does the newest TLD3 board work better than the TLD1 and TLD2?</h3>
+
+<p>The TLD3 is slightly more efficient and a bit more physically
+robust to rough handling, but it functions exactly the same.</p>
+
+<p>The main difference is that the TLD1 and TLD2 boards must be
+adjusted by desoldering and replacing trimming resistors, where the
+TLD3 can be adjusted via two potentiometers.</p>
+
+<h3>Where can I find schematics, design docs, Gerbers, etc, for these parts?</h3>
+
+<ul>
+<li><a href="led-TLD1.shtml">Driver board TLD1</a></li>
+<li><a href="led-TLD2.shtml">Driver board TLD2</a></li>
+<li><a href="led-TLD3.shtml">Driver board TLD3</a></li>
+<li><a href="led-strip.shtml">Daylight LED strip</a></li>
+<li><a href="led-inverter.shtml">Electrical connection points for LED drivers</a></li>
+</ul>
+
+<h3>May I use the schematics and Gerbers to make/sell my own boards?</h3>
+
+<p>Feel free to use and improve these designs as you wish.  If you
+want to make and sell parts (and save me the trouble), be my guest!  I
+might even give an endorsement :-)</p>
+
+<!--#include virtual="toc.include" -->
+<!--#include virtual="footer1.include" -->
+April 28, 2016
+<!--#include virtual="footer2.include" -->

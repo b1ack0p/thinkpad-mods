@@ -1,0 +1,52 @@
+Add (front)
+
+ 1    C7    4.7uF X5R 25V K1206
+ 2    C5    4.7uF X5R 25V K1206
+ 3    C6    4.7uF X5R 25V K1206
+ 4    C14   4.7uF X5R 25V K1206
+ 5    C25   0.01u X7R 50V K0402 
+ 6    Q8    FDS8880
+ 7    Q7    FDS8880
+ 8    U2    FDS6299S
+ 9    U6    FDS6299S
+10    R20   0J 1/10W 0603
+11    U4    AD3419
+12    D1    RB501V-40 1A40V UMD2
+13    C43   0.47uF X5R 25V K0805
+14    R27   2.2J 1/10W 0603     
+15    C47   3.3uF X5R 10V K0805
+16    C45   0.1uF X5R 10V K0402
+17    C46   470pF X7R 50V K0402
+18    R920  10 J 1/16W 0402    
+
+Swap (front)
+
+19    R7    301K->182K    front
+
+
+Add (back)
+
+20    C12   10uF X5R 25V K1206   back
+21    C648  10uF X5R 25V K1206   back
+22    L25   0.36uH                back
+23    TC10  470uF ESR6 M7343      back
+24    R616  143K F 1/16W 0402     back
+25    R630  0 J 1/16W 0402        back
+
+Remove (back)
+
+26    R634  remove        back
+
+Swap (back)
+
+27    R615  220K->143K    back
+28    R624  160K->165K    back
+29    C650  1000pF->1500pF 50V back
+30    R622  267K->240K    back
+
+
+
+
+
+
+
