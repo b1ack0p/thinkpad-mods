@@ -1,0 +1,500 @@
+<!--#include virtual="header1.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+body {
+      padding: 0px;
+      max-width: 100%;
+     }
+input {
+      white-space: nowrap;
+      padding: .1em 1em .1em 1em;
+     }
+input[type=radio] {
+      display: none;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+     }
+input + label {
+      display: inline-block;
+      cursor: pointer;
+      border-left: 2px solid #555555;
+      border-right: 2px solid #555555;
+      border-top: 0;
+      border-bottom: 0;
+     }
+input[type=radio]:checked + label{
+      background: #707070; 
+      border-left: 2px solid red;
+      border-right: 2px solid red;
+      border-top: 0;
+      border-bottom: 0;
+      border-radius: 5px;
+     }
+input[type=radio]:hover + label{
+      background: #707070;
+      border-radius: 5px;
+     }
+label {
+      position: relative;
+      left: -2px;
+      margin: 0;
+      padding: .05em .5em .05em .5em;
+      width: 100%;
+      margin-left: -.5em;
+      white-space: nowrap;
+     }
+td {
+      text-align: left;
+      border: none;
+      background: none;
+      padding: 0px;
+      margin: 0px;
+      border: 0px;
+     }
+h4 {
+      margin-bottom: 1em;
+     }
+table {
+      padding: 0;
+      width: 100%;
+      margin: 0 auto 0 auto; padding: 5px;
+      border-spacing: 0px;
+}
+.gamutcap p {
+      display: block;
+      text-align: center;
+      font-style: italic;
+      font-size: .9em;
+      color: #c0c0c0;
+      margin: 0 2em 2em 2em;
+      line-height: 1.23em;
+     }
+.content {
+      padding-left: 88px;
+      padding-right: 68px;
+      padding-bottom: 0px;
+      margin: 0 auto 0 auto;
+      max-width: 900px;
+     }
+
+{
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div class=content>
+      <div id=logo>
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>LED Backlight Color Measurements</h1>
+
+<!--#include virtual="header3.include" -->
+<div class="or">
+  for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+</div>
+</div>
+<div id=topnav>
+&gt;
+<a href="led-backlight.html">About</a> |
+<a href="led-kit.html">LED Kits</a> |
+<a href="led-kit.html#order">Order</a> |
+<a href="led-panel.html">Installation</a> |
+<a href="led-kit.html#FAQ">FAQ</a> |
+<a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+  <p>Below are color fidelity measurements of the various X61 screens
+    fitted with LED strips from several different vendors.  I made
+    these measurements before I began building my own kits and strips,
+    mainly as a way of quantifying just how dire the color
+    reproduction problem really was.</p>
+
+    I also included a number of strips I made by hand using
+    general-purpose white lighting LEDs as some early tests (which made it clear
+    such LEDs were entirely unsuitable), as well as a few other LCD
+    screens for comparison purposes.</p>
+
+    <p> Be aware that most vendors change the LEDs they use almost
+    constantly, but this should still give some idea as to the kind of
+    color fidelity roulette one can expect from a random LED conversion
+    kit. </p>
+</div>
+<div style="margin: 2.5em 0 3em 0;
+	    padding: 0 10px 0 10px;">
+  <div style="margin: 0 auto 0 auto;
+	      color: #ffffff;
+	      border: 0px;
+	      width: auto;
+	      max-width: 1280px;
+	      overflow: hidden;">
+    <table>
+      <tr>
+	<td style="padding: 0 15px 0 15px;
+		   border-top-left-radius: 15px;
+		   border-bottom-left-radius: 15px;
+		   border-top-right-radius: 0px;
+		   border-bottom-right-radius: 0px;
+		   background: #333333;
+		   text-align: center;
+		   width: 75%;
+	    ">
+	  <a id=gamutlink href="gamutdata/HV121P01-100-CCFL.png">
+	    <img id=gamutimage style="position: relative; max-width: 900px; width: 100%; margin: 0 auto 0 0; padding: 0px;" src="gamutdata/HV121P01-100-CCFL.png" />
+	  </a>
+	  <div id="HV121P01-100notes" class=gamutcap><p>Notes: Measurements taken from a batch of apparently unused, factory-sealed HV121P01-100 screens with front cover 'glass' in place.</p></div>
+	  <div id="HV121X03-100notes" class=gamutcap style="display: none;"><p>Notes: Measurements taken from used EX+ factory original HV121X03-100 screens with warranty seals in-tact and multitouch front-surfaces.</p></div>
+	  <div id="HV121X01-101notes" class=gamutcap style="display: none;"><p>Notes: Measurements taken from a single HV121X01-101 screen out of a heavily worn X61s.  No CCFL reading as the CCFL in this screen was DOA.</p></div>
+	  <div id="LTN121XJ-L07notes" class=gamutcap style="display: none;"><p>Notes: Measurements taken from a single LTN121XJ-L07 screen out of a heavily worn X61.  No CCFL reading as the CCFL in this screen was DOA.</p></div>
+	  <div id="P2415Qnotes" class=gamutcap style="display: none;"><p>Notes: Measurement taken from a month-old Dell P2415Q set to 'standard' color mode.</p></div>
+	  <div id="W540notes" class=gamutcap style="display: none;"><p>Notes: Measurement taken from a ~6-month old W540 with 3k IPS at max brightness with no color management active</p></div>
+	  <div id="W701notes" class=gamutcap style="display: none;"><p>Notes: Measurement taken from a 5-year-old W701 with wide-gamut WUXGA screen at max brightness and no color management active</p></div>
+	</td>
+
+	<td style="padding: 0 15px 0 17px;
+		   text-align: center;
+		   border-top-left-radius: 0px;
+		   border-bottom-left-radius: 0px;
+		   border-top-right-radius: 15px;
+		   border-bottom-right-radius: 15px;
+		   background: #555555;
+		   vertical-align: top;">
+	  <div style="margin: 2em auto 1em auto;"><span>Panel:</span></div>
+	  <select id=gamutscreen style="margin: 0 auto 0 auto;">
+	    <option value="HV121P01-100">Boe/Hydis HV121P01-100 (SXGA AFFS)</option>
+	    <option value="HV121X03-100">Boe/Hydis HV121X03-100 multitouch (XGA AFFS)</option>
+	    <option value="HV121X01-101">Boe/Hydis HV121X01-101 (XGA TN)</option>
+	    <option value="LTN121XJ-L07">Samsung LTN121XJ-L07 (XGA TN)</option>
+	    <option value="P2415Q">Dell P2415Q (4k IPS)</option>
+	    <option value="W540">Thinkpad W540 (wide-gamut 3K IPS)</option>
+	    <option value="W701">Thinkpad W701 (wide-gamut WUXGA TN)</option>
+	  </select>
+	  <div id=screenmenus style="position: relative; margin: 2em .5em 1em .5em;">
+	    <table id="HV121P01-100" style="text-align: left;">
+	      <tr><td><input type="radio" name="HV121P01-100" value="CCFL" id=a1 checked=checked/><label for=a1>original CCFL backlight (brand new)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="creatallA" id=a2 /><label for=a2>creatall88 'unboosty' 9.6V LED (sample A)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="creatallB" id=a3 /><label for=a3>creatall88 'unboosty' 9.6V LED (sample B)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="creatallC" id=a4 /><label for=a4>creatall88 'unboosty' 9.6V LED (sample C)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="spiffy" id=a5 /><label for=a5>creatall88 'unboosty' 9.6V LED (sample D)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="iCCFL" id=a6 /><label for=a6>iCCFL 'unboostyB' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="rb" id=a7 /><label for=a7>lcd-chip 'cheapybuck' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="fancyboost" id=a8 /><label for=a8>xCCFL 'fancyboost' 24V side-facing LEDs</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="simpleboost" id=a9 /><label for=a9>lcd-chip 'simpleboost' 30V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="killwithfire" id=a10 /><label for=a10>Unknown vendor, no markings</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="cree" id=a11 /><label for=a11>Cree CLM3C-WKW-CWBYA453 5500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="hebei" id=a12 /><label for=a12>Hebei 3014W6U 6000K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="duris" id=a13 /><label for=a13>Osram Duris BSBU-5C8E 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="L130" id=a14 /><label for=a14>Luxeon L130 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="TL2" id=a15 /><label for=a15>Toshiba TL2FL-DW1 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121P01-100" value="daylight" id=a16 /><label for=a16>[<b>NEW</b>] Monty 'Daylight' kit</label></td></tr>
+	    </table>
+	    <table id="HV121X03-100" style="position: absolute; top:0; left: 0;text-align: left; visibility: hidden;">
+	      <tr><td><input type="radio" name="HV121X03-100" value="CCFL" id=c1 checked=checked/><label for=c1>original CCFL backlight (used)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="creatallA" id=c2 /><label for=c2>creatall88 'unboosty' 9.6V LED (sample A)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="creatallB" id=c3 /><label for=c3>creatall88 'unboosty' 9.6V LED (sample B)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="creatallC" id=c4 /><label for=c4>creatall88 'unboosty' 9.6V LED (sample C)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="spiffy" id=c5 /><label for=c5>creatall88 'unboosty' 9.6V LED (sample D)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="iCCFL" id=c6 /><label for=c6>iCCFL 'unboostyB' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="rb" id=c7 /><label for=c7>lcd-chip 'cheapybuck' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="fancyboost" id=c8 /><label for=c8>xCCFL 'fancyboost' 24V side-facing LEDs</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="simpleboost" id=c9 /><label for=c9>lcd-chip 'simpleboost' 30V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="killwithfire" id=c10 /><label for=c10>Unknown vendor, no markings</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="cree" id=c11 /><label for=c11>Cree CLM3C-WKW-CWBYA453 5500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="hebei" id=c12 /><label for=c12>Hebei 3014W6U 6000K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="duris" id=c13 /><label for=c13>Osram Duris BSBU-5C8E 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="L130" id=c14 /><label for=c14>Luxeon L130 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X03-100" value="TL2" id=c15 /><label for=c15>Toshiba TL2FL-DW1 6500K</label></td></tr>
+	    </table>
+	    <table id="HV121X01-101" style="position: absolute; top:0; left: 0;text-align: left; visibility: hidden;">
+	      <tr><td><input type="radio" name="HV121X01-101" value="creatallA" id=d2 checked=checked/><label for=d2>creatall88 'unboosty' 9.6V LED (sample A)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="creatallB" id=d3 /><label for=d3>creatall88 'unboosty' 9.6V LED (sample B)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="creatallC" id=d4 /><label for=d4>creatall88 'unboosty' 9.6V LED (sample C)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="spiffy" id=d5 /><label for=d5>creatall88 'unboosty' 9.6V LED (sample D)</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="iCCFL" id=d6 /><label for=d6>iCCFL 'unboostyB' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="rb" id=d7 /><label for=d7>lcd-chip 'cheapybuck' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="simpleboost" id=d9 /><label for=d9>lcd-chip 'simpleboost' 30V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="killwithfire" id=d10 /><label for=d10>Unknown vendor, no markings</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="hebei" id=d11 /><label for=d11>Hebei 3014W6U 6000K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="duris" id=d12 /><label for=d12>Osram Duris BSBU-5C8E 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="L130" id=d13 /><label for=d13>Luxeon L130 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="HV121X01-101" value="TL2" id=d14 /><label for=d14>Toshiba TL2FL-DW1 6500K</label></td></tr>
+	    </table>
+	    <table id="LTN121XJ-L07" style="position: absolute; top:0; left: 0;text-align: left; visibility: hidden;">
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="creatallA" id=e2 checked=checked/><label for=e2>creatall88 'unboosty' 9.6V LED (sample A)</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="creatallB" id=e3 /><label for=e3>creatall88 'unboosty' 9.6V LED (sample B)</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="creatallC" id=e4 /><label for=e4>creatall88 'unboosty' 9.6V LED (sample C)</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="spiffy" id=e5 /><label for=e5>creatall88 'unboosty' 9.6V LED (sample D)</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="iCCFL" id=e6 /><label for=e6>iCCFL 'unboostyB' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="rb" id=e7 /><label for=e7>lcd-chip 'cheapybuck' 9.6V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="simpleboost" id=e9 /><label for=e9>lcd-chip 'simpleboost' 30V LED backlight</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="killwithfire" id=e10 /><label for=e10>Unknown vendor, no markings</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="hebei" id=e11 /><label for=e11>Hebei 3014W6U 6000K</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="duris" id=e12 /><label for=e12>Osram Duris BSBU-5C8E 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="L130" id=e13 /><label for=e13>Luxeon L130 6500K</label></td></tr>
+	      <tr><td><input type="radio" name="LTN121XJ-L07" value="TL2" id=e14 /><label for=e14>Toshiba TL2FL-DW1 6500K</label></td></tr>
+	    </table>
+	    <table id="P2415Q" style="position: absolute; top:0; left: 0;text-align: left; visibility: hidden;">
+	      <tr><td><input type="radio" name="P2415Q" value="orig" id=f1 checked=checked/><label for=f1>original backlight, factory sRGB calibration</label></td></tr>
+	    </table>
+	    <table id="W540" style="position: absolute; top:0; left: 0;text-align: left; visibility: hidden;">
+	      <tr><td><input type="radio" name="W540" value="orig" id=g1 checked=checked/><label for=g1>original backlight, full uncalibrated gamut</label></td></tr>
+	    </table>
+	    <table id="W701" style="position: absolute; top:0; left: 0;text-align: left; visibility: hidden;">
+	      <tr><td><input type="radio" name="W701" value="orig" id=h1 checked=checked/><label for=h1>original backlight, full uncalibrated gamut</label></td></tr>
+	    </table>
+	  </div>
+	  <script type="text/javascript" src="gamutdriver.js"></script>
+	</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class=content>
+<h2>How to read the charts</h2>
+
+<h4>CIE colorspace</h4>
+
+<p><em>Short version</em>: The closer the red triangle and + are to the white
+triangle and D65 circle, the better.</p>
+
+<p><em>Longer version</em>: The CIE 1931 color chart on the top left
+is a plot of how close the screen/backlight combination comes to
+accurate reproduction of basic colors. There are several versions of
+the CIE colorspace; I've chosen the oldest and most familiar.  They
+all impart the same information, they just scale the color areas
+differently.</p>
+
+<p>The large, curved, vaguely horseshoe-shaped area represents all the
+colors humans can see.</p>
+
+<p>Inside the CIE horseshoe, the highlighted white triangle marked
+'sRGB color gamut' indicates the default standard computer monitor
+colorspace, that is, all the colors a standard computer monitor should
+be able to display.  The screens we're measuring here should be judged
+against sRGB, so the white triangle represents perfection.  Near the
+center of the triangle, the circle marked 'D65' indicates the position
+of ideal white (a color temperature of 6504K on the daylight locus.
+The daylight locus sits slightly above the blackbody locus marked by
+the black curve). </p>
+
+<p> The red triangle indicates the actual colors produced by the
+display being measured. A red triangle smaller than sRGB means colors
+look washed out in comparison.  A red triangle larger than sRGB
+means colors look oversaturated.  Where the triangle corners don't
+line up, that color is shifted in hue.  For example, it's common for
+low-power displays of this era to shift deep blue toward cyan in order
+to increase apparent brightness.</p>
+
+<p>The red '+' indicates the actual measured white color produced by the
+display.  The closer the plus is to the center of the D65 circle, the
+closer the display's whitepoint is to correct.
+
+<h4>Color bars</h4>
+
+<p><em>Short version</em>: Given the color on the left side, the
+display actually shows the color on the right side.  The closer the
+colors on the left and right match, the better.</p>
+
+<p><em>Longer version</em>: The color bars illustrate the relative
+color differences between an ideal sRGB display (the reference color
+on the left), and the same color as it would be displayed on the
+measured monitor (the displayed color on the right). Of course, very
+few displays perfectly match sRGB, so even the absolute reference
+colors are going to be displayed differently on different
+monitors. However, the <em>relative</em> color difference will still
+be approximately correct so long as the display in use is anywhere
+close to sRGBish behavior.</p>
+
+<p>Each color bar also contains a few numerical measurements. The
+white bar shows the correlated color temperature, brightness of the
+display in nits, and the CIEDE2000 perceptual error between the
+measured whitepoint and the closest point on the daylight locus.  The
+black bar shows the measured blackpoint brightness and contrast ratio
+of the display.  The color bars each show the relative measured
+saturation (actually 'perceived colorfulness', but close enough) of
+red, green and blue as compared to the reference in the CIELCH
+colorspace, as well as the CIEDE2000 perceptual error between the
+reference and measured primaries taking the measured whitepoint into
+account.  Ideal saturation is 100%, and ideal CIEDE2000 error is 0.0
+(less than ~3 is usually considered imperceptible).</p>
+
+<h4>Raw spectral power density</h4>
+
+<p><em>Short version</em>: Don't worry about it.</p>
+
+<p><em>Longer version</em>: The SPD (spectral power density) is the
+raw power-per-spectral bin data collected by the spectrometer.  The
+software makes separate readings for red, green, blue, white and
+black. This information is then used to compute the various color
+metrics.</p>
+
+<p>The SPD plot shows this data in raw form, normalized so the highest
+peak always fits on the graph.  In this form, the data doesn't say
+much [directly] about final color rendering, but the curves can tell us
+both about the backlight technology in use (CCFL, white LED and RGB
+LED backlights will all look significantly different on such a graph)
+as well as the color filters used in the LCD panel.</p>
+
+<h2>Measurement details</h2>
+
+<p>These measurements were all taken using a UPRTek MK350N handheld
+spectrometer that returns absolute mW/m&#178;/nm spectral irradiance data
+in 1nm bins from 360nm to 760nm.  This device is designed for
+relatively high-intensity measurements and features a wide-angle
+cosine-corrected sensor meant for ambient lighting use.  Monitor
+measurement, on the other hand, requires low light sensitivity and a
+narrow field of view (not to mention conversion to nits).</p>
+
+<p>I designed a measurement harness for the spectrometer with
+narrow-field correction optics and a large aperture to give it a
+roughly 10 degree field of view and boost light gathering by about a
+factor of 15x.  The optics plus long exposures and noise profiling
+software gives the device a minimum useful sensitivity/accuracy of
+about .005nits.  Reproduceability was well within than the natural
+brightness variability of the backlight hardware.</p>
+
+<div class=caption>
+  <img src="glass.jpg"/>
+  <p>Above: These measurements were made by fitting custom optics to
+  an MK350N spectrometer (using only the highest-precision laboratory
+  grade foamcore and hot glue), then fitting the spectrometer and
+  optics to a mounting baffle that enveloped the LCD panel.</p>
+</div>
+
+<p>Because of the very narrow field of view, the measurement figures
+are a bit different compared to consumer grade monitor calibration
+hardware.  Contrast and brightness numbers especially may be somewhat
+higher than you'd measure with, e.g., a Spyder colorimeter.  The narrow
+field of view is blind to off-angle glow and bleed and measures the
+emitted light in its strongest direction, so it gives near-optimal
+'dead on center, straight-ahead' scores.</p>
+
+
+<h2>Notes and observations</h2>
+
+<p>We can draw several conclusions from these measurements.</p>
+
+<p>None of these panels are high-saturation under the best of
+conditions.</p>
+
+<p>Even high quality general-purpose lighting LEDs (e.g., the Osram,
+Cree, Luxeon, Toshiba, and Hebei LEDs above) have inappropriate
+spectral output for backlights.  6500K LEDs do not result in a 6500K
+panel whitepoint.  The LCD panels themselves filter the light
+nonuniformly, and the spectrally yellow-green heavy output of high
+efficiency lighting LEDs is selectively overemphasized.</p>
+
+<p>LED backlight replacements using white LEDs based on a blue pump +
+yellow phosphor (ie, nearly every white LED produced today) shift the
+saturation balance significantly. The overall impression can still be
+acceptable, though with a noticable loss of saturation and a shift of
+reds and greens toward yellow.</p>
+
+<p>Specialty LEDs designed for backlight use (eg, LEDs that use blue
+to pump separate red and green phosphors with little yellow overlap)
+can avoid this problem.  They can, in fact, improve saturation and
+color rendering over the original CCFL.</p>
+
+<p>Badly matched LEDs can skew the color output pretty hard.  And,
+unfortunately, the highest-efficiency LEDs tend to have the worst
+color (as they lean harder on the yellow/green portion of the spectrum
+for higher apparent output).</p>
+
+<p>Whatever the LED used, they're between somewhat and substantially
+brighter than a CCFL.</p>
+
+<p>Lastly, different screens looked best with different LEDs.  The
+AFFS screens especially require LEDs with lower-than-usual green
+output, and as little as possible yellow.  Most of the LED conversion
+kits being sold on the web appear to be more appropriate for TN
+screens.  Few look good when used with AFFS.</p>
+
+<!--#include virtual="toc.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <div>
+      Everything needed to update a CCFL ThinkPad to LED
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+      </li>
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+  (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+May 22, 2015
+<!--#include virtual="footer2b.include" -->
+      </address>
+    </div>
+  </body>
+</html>

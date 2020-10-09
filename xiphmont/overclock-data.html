@@ -1,0 +1,449 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    		<style>
+      table {
+        border-spacing: 0px;
+        border-collapse: collapse;
+        color: black;
+      }
+      th {
+        margin: 0px;
+        padding-left: 1em;
+        padding-right: 1em;
+        background: #e0e0e0;
+      }  
+      tr{
+        background: white;
+      }
+
+      tr td{
+      }
+
+      tr:nth-child(2n+4){
+        background: #e0ffe0; 
+      }
+
+      tr:nth-child(2n+4) td{
+      }
+
+      .sh {
+        min-width: 3em;
+        text-align: center;
+        padding-left: 1em;
+        padding-right: 1em;
+        background: white;
+      }
+      td {
+        padding-left: 1em;
+        padding-right: 1em;
+        white-space: nowrap;
+        text-align: center;
+      }
+      .fail {
+        color: red;
+        border: none;
+      }
+
+      tr.fail {
+        color: black;
+        background: #ffe0e0; 
+      }
+      .good {
+        border: none;
+        color: green;
+      }
+      .unkn {
+        border: none;
+      }
+      .in {
+        border: none;
+      }
+
+      .note > td {
+        padding-bottom: .75em;
+      }
+
+      td.hdiv {
+        width: 0px;
+        padding: 1px;
+        margin: 0px;
+        background: #e0e0e0;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>So, you want to overclock an X61T?</h1>
+
+    <table>
+      <tbody><tr>
+	<th rowspan="2">         </th>
+	<th rowspan="2">processor</th>
+	<th rowspan="2">FRU      </th>    
+	<th rowspan="2">planar   </th>
+	<th rowspan="2">serialno </th>
+	<th colspan="4">stock VID/FID</th>
+	<td class="hdiv" rowspan="33"></td>
+	<th rowspan="2">idle draw</th>
+	<td class="hdiv" rowspan="36"></td>
+	<th colspan="4">min VID (FSB200, one core)</th>
+	<td class="hdiv" rowspan="36"></td>
+	<th colspan="4">min VID (FSB200, both cores)</th>
+	<td class="hdiv" rowspan="36"></td>
+	<td style="padding: 1px; width: 0px; background: white;" rowspan="36"></td>
+	<td class="hdiv" rowspan="36"></td>
+	<th colspan="4">min VID (FSB266, one core)</th>
+	<td class="hdiv" rowspan="36"></td>
+	<th colspan="4">min VID (FSB266, both cores)</th>
+      </tr>
+      <tr>
+	<td class="sh">IDA</td>
+	<td class="sh">HFM</td>
+	<td class="sh">LFM</td>
+	<td class="sh">SLFM</td>
+
+	<td class="sh">IDA</td>
+	<td class="sh">HFM</td>
+	<td class="sh">LFM</td>
+	<td class="sh">SLFM</td>
+
+	<td class="sh">IDA</td>
+	<td class="sh">HFM</td>
+	<td class="sh">LFM</td>
+	<td class="sh">SLFM</td>
+
+	<td class="sh">IDA</td>
+	<td class="sh">HFM</td>
+	<td class="sh">LFM</td>
+	<td class="sh">SLFM</td>
+
+	<td class="sh">IDA</td>
+	<td class="sh">HFM</td>
+	<td class="sh">LFM</td>
+	<td class="sh">SLFM</td>
+      </tr>
+      <tr style="height: 1em;"></tr>
+
+      <tr>
+	<td>12.</td>
+	<td>L7500 SLA3R</td> <td>42W7818</td> <td>48.4B404.011</td> <td>1ZDXD7921KD</td>
+	<td>0925</td><td>081c</td><td>0615</td><td>880b</td><td>5.70W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0911</td><td>080e</td><td>060b</td><td>880b</td>
+
+	<td>091f</td><td>0816</td><td>060b</td><td>880b</td>
+	<td class="fail">--</td><td>0819</td><td>060d</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">20</td><td class="good">14</td>
+	<td class="in" colspan="2"></td><td class="good">6</td><td class="good">6</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="good">3</td>
+      </tr>
+
+      <tr>
+	<td>2.</td>
+	<td>L7500 SLAET</td> <td>42W7818</td> <td>48.4B401.011</td> <td>1ZDXD81Z1BK</td>
+	<td>0925</td><td>081b</td><td>0615</td><td>880b</td><td>5.70W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0911</td><td>080c</td><td>060b</td><td>880b</td>
+
+	<td>0920</td><td>0816</td><td>060b</td><td>880b</td>
+	<td class="fail">--</td><td>0818</td><td>060c</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">20</td><td class="good">15</td>
+	<td class="in" colspan="2"></td><td class="good">5</td><td class="good">5</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="good">3</td>
+      </tr>
+
+      <tr>
+	<td>11.</td>
+	<td>L7500 SLA3R</td> <td>42W7818</td> <td>48.4B404.011</td> <td>1ZDP778S1HC</td>
+	<td>0925</td><td>081b</td><td>0615</td><td>880b</td><td>5.70W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0911</td><td>080d</td><td>060b</td><td>880b</td>
+
+	<td>091e</td><td>0816</td><td>060b</td><td>880b</td>
+	<td class="fail">--</td><td>0819</td><td>060d</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">20</td><td class="good">14</td>
+	<td class="in" colspan="2"></td><td class="good">7</td><td class="good">5</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="good">2</td>
+      </tr>
+
+      <tr>
+	<td>14.</td>
+	<td>L7500 SLA3R</td> <td>42W7818</td> <td>48.4B401.011</td> <td>1ZDP777Y1XH</td>
+	<td>0924</td><td>081a</td><td>0615</td><td>880b</td><td>5.64W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0910</td><td>080d</td><td>060b</td><td>880b</td>
+
+	<td>091d</td><td>0815</td><td>060b</td><td>880b</td>
+	<td class="fail">--</td><td>0818</td><td>060d</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">20</td><td class="good">13</td>
+	<td class="in" colspan="2"></td><td class="good">7</td><td class="good">5</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="good">2</td>
+      </tr>
+
+      <tr>
+	<td>5.</td>
+	<td>L7500 SLAET</td> <td>60Y4030</td> <td>48.4B401.021</td> <td>1ZHKW0BJFUS</td>
+	<td>0925</td><td>081a</td><td>0615</td><td>880f</td><td>5.04W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0911</td><td>080f</td><td>060f</td><td>880f</td>
+
+	<td>091f</td><td>0816</td><td>060f</td><td>880f</td>
+	<td class="fail">--</td><td>0818</td><td>060f</td><td>880f</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">20</td><td class="good">&gt;11</td>
+	<td class="in" colspan="2"></td><td class="good">6</td><td class="good">4</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="good">2</td>
+      </tr>
+
+      <tr>
+	<td>9.</td>
+	<td>L7500 SLAET</td> <td>43Y9032</td> <td>48.4B404.011</td> <td>1ZDP778S1HC</td>
+	<td>0925</td><td>081b</td><td>0615</td><td>880b</td><td>6.36W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0912</td><td>080e</td><td>060b</td><td>880b</td>
+
+	<td>091e</td><td>0816</td><td>060c</td><td>880b</td>
+	<td class="fail">--</td><td>081a</td><td>060e</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">19</td><td class="good">13</td>
+	<td class="in" colspan="2"></td><td class="good">7</td><td class="good">5</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="good">1</td>
+      </tr>
+
+
+      <tr class="fail">
+	<td>3.</td>
+	<td>L7500 SLAET</td> <td>43Y9032</td> <td>48.4B401.021</td> <td>1ZF3S87Y2W2</td>
+	<td>0925</td><td>081c</td><td>0615</td><td>880b</td><td>4.80W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0916</td><td>0810</td><td>060b</td><td>880b</td>
+
+	<td>0922</td><td>0818</td><td>060d</td><td>880b</td>
+	<td class="fail">--</td><td>081d</td><td>0610</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">15</td><td class="good">12</td>
+	<td class="in" colspan="2"></td><td class="good">3</td><td class="good">4</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="fail">-1</td>
+      </tr>
+
+      <tr class="fail">
+	<td>15.</td>
+	<td>L7500 SLAET</td> <td>42W7818</td> <td>48.4B401.011</td> <td>1ZDXD81Z1F6</td>
+	<td>0925</td><td>081b</td><td>0615</td><td>880b</td><td>5.70W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0912</td><td>080f</td><td>060b</td><td>880b</td>
+
+	<td>0920</td><td>0819</td><td>060e</td><td>880b</td>
+	<td class="fail">--</td><td>081c</td><td>0610</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">19</td><td class="good">12</td>
+	<td class="in" colspan="2"></td><td class="good">5</td><td class="good">2</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="fail">-1</td>
+      </tr>
+
+      <tr class="fail">
+	<td>8.</td>
+	<td>L7500 SLAET</td> <td>42W7818</td> <td>48.4B404.011</td> <td>1ZDXD7OP1J6</td>
+	<td>0922</td><td>0818</td><td>0615</td><td>880b</td><td>5.88W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0913</td><td>080f</td><td>060b</td><td>880b</td>
+
+	<td>091f</td><td>0817</td><td>060d</td><td>880b</td>
+	<td class="fail">--</td><td>081a</td><td>060f</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">15</td><td class="good">9</td>
+	<td class="in" colspan="2"></td><td class="good">3</td><td class="good">1</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="fail">-2</td>
+      </tr>
+
+      <tr class="fail">
+	<td>7.</td>
+	<td>L7500 SLAET</td> <td>60Y4030</td> <td>48.4B401.021</td> <td>1ZGR909AFU1</td>
+	<td>0925</td><td>081c</td><td>0615</td><td>880f</td><td>4.62W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0916</td><td>0811</td><td>060f</td><td>880f</td>
+
+	<td>0924</td><td>081b</td><td>0610</td><td>880f</td>
+	<td class="fail">--</td><td>081f</td><td>0612</td><td>880f</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">15</td><td class="good">11</td>
+	<td class="in" colspan="2"></td><td class="good">1</td><td class="good">1</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="fail">-3</td>
+      </tr>
+      
+      <tr class="fail">
+	<td>6.</td>
+	<td>L7500 SLAET</td> <td>43Y9032</td> <td>48.4B401.021</td> <td>1ZEYR92A1MF</td>
+	<td>0925</td><td>081c</td><td>0615</td><td>880f</td><td>5.28W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0917</td><td>0812</td><td>060f</td><td>880f</td>
+
+	<td>0925</td><td>081b</td><td>0610</td><td>880f</td>
+	<td class="fail">--</td><td>081f</td><td>0612</td><td>880f</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">14</td><td class="good">10</td>
+	<td class="in" colspan="2"></td><td class="good">0</td><td class="good">1</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="fail">-3</td>
+      </tr>
+
+      <tr class="fail">
+	<td>13.</td>
+	<td>L7500 SLA3R</td> <td>42W7818</td> <td>48.4B401.011</td> <td>1ZDP777Y1XL</td>
+	<td>0921</td><td>0818</td><td>0615</td><td>880b</td><td>5.76W</td>
+
+	<td class="nm"></td><td class="nm"></td><td class="nm"></td><td class="nm"></td>
+	<td>0911</td><td>080d</td><td>060b</td><td>880b</td>
+
+	<td>091d</td><td>0814</td><td>060b</td><td>880b</td>
+	<td class="fail">--</td><td class="fail">--</td><td>060d</td><td>880b</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">16</td><td class="good">11</td>
+	<td class="in" colspan="2"></td><td class="good">4</td><td class="good">4</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td class="fail"></td>
+      </tr>
+
+      <tr class="fail">
+	<td>4.</td>
+	<td>L7700 SLAES</td> <td>43Y9034</td> <td>48.4B401.021</td> <td>1ZF3T89H1JZ</td>
+	<td>0a25</td><td>091a</td><td>0615</td><td>880b</td><td>5.28W</td>
+
+	<td>0a15</td><td>090e</td><td>060b</td><td>880b</td>
+	<td>0a16</td><td>0911</td><td>060b</td><td>880b</td>
+
+	<td>0a24</td><td>091b</td><td>060c</td><td>880b</td>
+	<td class="fail">--</td><td class="fail">--</td><td class="fail">--</td><td class="fail">--</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">15</td><td class="good">9</td>
+	<td class="in" colspan="2"></td><td class="good">1</td><td class="fail">-1</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td></td>
+      </tr>
+
+      <tr class="fail">
+	<td>1.</td>
+	<td>L7700 SLAES</td> <td>42W7845</td> <td>48.4B401.011</td> <td>1ZE3E81S1MC</td>
+	<td>0a25</td><td>091a</td><td>0615</td><td>880b</td><td>5.58W</td>
+
+	<td>0a14</td><td>090f</td><td>060b</td><td>880b</td>
+	<td>0a17</td><td>0912</td><td>060b</td><td>880b</td>
+
+	<td>0a24</td><td>091b</td><td>060b</td><td>880b</td>
+	<td class="fail">--</td><td class="fail">--</td><td class="fail">--</td><td class="fail">--</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">14</td><td class="good">8</td>
+	<td class="in" colspan="2"></td><td class="good">1</td><td class="fail">-1</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td></td>
+      </tr>
+
+
+      <tr class="fail">
+	<td>16.</td>
+	<td>L7700 SLAES</td> <td>43Y9034</td> <td>48.4B401.021</td> <td>1ZF3T8BB22J</td>
+	<td>0a25</td><td>091b</td><td>0615</td><td>880b</td><td>5.64W</td>
+
+	<td>0a16</td><td>0910</td><td>060b</td><td>880b</td>
+	<td>0a18</td><td>0913</td><td>060b</td><td>880b</td>
+
+	<td class="fail">--</td><td>091d</td><td>060d</td><td>880b</td>
+	<td class="fail">--</td><td class="fail">--</td><td class="fail">--</td><td class="fail">--</td>
+      </tr>
+      <tr class="note">
+	<td class="in" colspan="9"></td><td class="in" colspan="1"></td>
+	<td class="in" colspan="4"></td><td class="good">13</td><td class="good">8</td>
+	<td class="in" colspan="2"></td><td></td><td class="fail">-2</td>
+	<td class="in" colspan="2"></td>
+	<td class="in" colspan="1"></td><td></td>
+      </tr>
+
+    </tbody></table>
+
+    <div style="max-width: 50em;">
+    <p>Motherboards from the test are sorted above roughly in order of
+    suitability for FSB 200-&gt;266 overclocking via the clockgen pin7
+    BSEL hack.
+    </p><p>Lines in red are motherboards that failed a quick stability
+    test consisting of the first seven linear equation sets from a
+    standard 64 bit linpack run (about two minutes of computation
+    time) with the fan at max and speedstep on automatic.  In
+    practice, this resulted in the processor running entirely in HFM
+    at stock voltage once the test began.
+    </p><p>'min VID' is the lowest VID at each multiplier that completed
+    the linpack run successfully; it is not a good measure of overall
+    stability, but it produced consistent, comparable results.
+    </p><p>The number under various undervolted VIDs is the difference
+    between the stock VID for that multiplier and the experimentally
+    determined minimum VID for that test.  A negative number means
+    that multiplier would fail at stock voltage.
+    </p><p>Entries listed as '--' indicates the processor was not able to
+    complete the test for that multiplier at the maximum available
+    software configurable voltage, or was unable to boot at all.
+    </p><p>Motherboard 10 is not on this list; it was stupidly sacrificed
+    to VRM mod testing before collecting detailed overclocking
+    data. Hovever, it did pass the basic linpack stability test after
+    FSB200-&gt;266 modding and before the VRM mod.
+    </p><p>All of the L7500 motherboards crashed attempting to use
+    overclocked dual-IDA (with the exception of mobo 10 after the VRM
+    mod).
+    </p><p>None of the L7700 motherboards were able to boot with both
+    cores active (BIOS setting) after modding.
+    </p><p>The tests in this table do not reflect any hardware voltage boosts or other modifications.
+    </p></div>
+  
+</body></html>

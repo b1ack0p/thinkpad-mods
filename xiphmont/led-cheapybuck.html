@@ -1,0 +1,518 @@
+<!--#include virtual="header1.include" -->
+<!--#include virtual="header2.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+     {
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>The "Cheapybuck" Kit for Thinkpads</h1>
+<!--#include virtual="header3.include" -->
+<div class="or">
+  for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+</div>
+</div>
+<div id=topnav>
+&gt;
+<a href="led-backlight.html">About</a> |
+<a href="led-kit.html">LED Kits</a> |
+<a href="led-kit.html#order">Order</a> |
+<a href="led-panel.html">Installation</a> |
+<a href="led-kit.html#FAQ">FAQ</a> |
+<a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+<table class=kit>
+  <tr>
+    <th>cheapybuck</th>
+    <th>notes</th>
+    <th>dim range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="#pwm">PWM-mode mod</a></td>
+    <td rowspan=2>
+      buck-down, 8-12V output<br />
+      3 LED segments, 9.6V nominal</td>
+    <td rowspan=2>6:1</td>
+    <td class=tr rowspan=2>$10-12</td>
+  </tr>
+  <tr>
+    <td><a href="#tpwm">Tiny PWM-mode mod</a></td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-cheapybuck-large.jpg">
+	<img src="led-cheapybuck-large.jpg" /></a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>Cheapest of the kits</li>
+	<li class=plus>Can be trimmed to much smaller size than other kits</li>
+	<li class=neutral>Requires modification to work with Thinkpad brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>No fault protection; any error could cause it
+	  to (literally) go up in flames.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>This is a simple, dimmable buck-down controller board
+  sold by multiple vendors in 'non-dimmable' LED kits. Those I've
+  contacted are very very insistent there's no way this driver
+  board can dim, and I'd need to buy a different [more expensive]
+  kit to do so.</p>
+
+<p>It dims perfectly well. The <a href="PT4115E.pdf">PT4115
+    datasheet</a> is very clear on that point, as are actual test
+    results. Like with the other drivers, modification is needed to
+    work with a ThinkPad.  The output is compatible with 9.6V
+    constant-current LED strips.  The PWM frequency is 200Hz unless
+    the OS changes it. If backlight flicker bothers you, definitely
+    use <a href="led-kit.html">one of my continuous-mode driver
+    boards</a> instead.</p>
+
+<div class=caption>
+  <img class=schematic 
+       src="led-cheapybuck-schematic.png" style="width: 60%"/>
+  <p>Above: Schematic of stock, unmodified &quot;Cheapybuck&quot;
+    LED driver board.  It doesn't get much simpler than this.
+    There's not even an output filter capacitor!</p>
+</div>
+
+
+<p>This is the cheapest and smallest of the boards/kits, going for as
+  little as $6+shipping, though that will come out to more after
+  considering the parts needed for the Thinkpad-required
+  modifications. Without any trimming it's about the same size as the
+  Fancyboost and can be cut down by over half.  Fitted with a lower
+  profile inductor, it will squeeze into places the other kits
+  can't. Otherwise, it doesn't really have much to recommend it.</p>
+
+<hr />
+<h2>Important safety tips [thanks, Egon]</h2>
+
+<p>The PT4115 is a twitchy chip with little useful fault
+  protection, and the trace layout of the Cheapybuck is downright
+  absurd.  It's easy to kill the Cheapybuck with an innocent
+  mistake that wouldn't bother other kits.</p>
+
+<ul>
+  <li>
+    The DIM input on the PT4115 controller (connected to the
+    board's on/off input) has no overvoltage protection.
+    Exceeding 5V on DIM for even an instant will blow the
+    chip.
+  </li>
+  <li>
+    The PT4115 is relatively sensitive to self-induced switching
+    noise on its power rails.  Too small of an input capacitor
+    or placing it too far away from the controller IC will send
+    the PT4115 up in flames.
+  </li>
+  <li>
+    The <a href="PT4115E.pdf">PT4115 datasheet</a> warns that
+    the chip is sensitive to layout. The Cheapybuck mostly
+    ignores the datasheet's layout guidelines.  As an example,
+    the entire ground connection to the controller IC and LEDs
+    is over a single 1oz trace a few mils wide. The supply rail
+    decoupling capacitor is on the <em>opposite side of that
+      trace</em>.
+    
+    <div class=caption>
+      <a href="led-cheapybuck-ground-large.jpg">
+        <img src="led-cheapybuck-ground-large.jpg"/>
+      </a>
+      <p>The Cheapybuck's ground traces are highlighted above,
+	with the single very narrow ground trace feeding the
+	controller IC and LEDs circled in red.  Note that the
+	decoupling capacitor for the positive rail is on the
+	opposite side of that trace from the IC and LEDs.</p>
+    </div>
+    
+    <p>Just moving the decoupling cap next to the controller IC
+      increases the board's average output current drive by nearly
+      10%.  This is why the 'trimmed' mods below require different
+      current-sense resistor values.
+    </p>
+  </li>
+  <li>
+    The <a href="PT4115E.pdf">PT4115 datasheet</a> recommends
+    an inductor no smaller than 68&micro;H for a 320mA, 3W
+    output. The Cheapybucks I've seen use values between
+    22&micro;H and 47&micro;H.  In the trimmed mods below, I swap
+    out the high-profile small value inductors for a more compact
+    Bourns SRR6028 68&micro;H inductor.  It saves space, slightly
+    improves efficiency, reduces output ripple, and should push
+    the controller IC further into its stability region.
+  </li>
+</ul>
+    
+<hr />
+<h2 id="pwm">PWM-mode Mod</h2>
+    
+<p>The PT4115 controller used in the Cheapybuck offers combined
+  enable, PWM dimming, and analog dimming functions on a single
+  input pin like many other controllers. However, the 'off' voltage
+  for the PT4115 is &le;.3V, a much lower threshold than other
+  chips.  A Thinkpad's DIM signal is compatible with this
+  constraint, but the Thinkpad ENA signal's logic low value is as
+  high as .8V.  As a result, we need to buffer the enable
+  signal.</p>
+
+<div class=caption>
+  <img class=schematic style="width: 65%;"
+       src="led-cheapybuck-schematic-pwm.png" />
+  <p>Above: Schematic of the Cheapybuck driver board modified for
+    PWM-mode operation with a Thinkpad.  Red marks new or altered
+    components and connections.<br />
+    <span style="color: red;">*</span>The recommended value of the
+    additional current sense resistor depends on the location of
+    the supply rail decoupling capacitor.</p>
+</div>
+
+<p>These specific components, connection points, etc. aren't the only
+  way or even best way to do this, but it's a way that works.  If you
+  see an obvious improvement, go for it.  Especially feel free to mix
+  surface mount and through-hole components as convenient.</p>
+
+<h3 class=center>parts needed</h3>
+<ol>
+  <li>2.4V Zener diode (through hole 1N5221B recommended)</li>
+  <li>1M&ohm; resistor (miniature or standard-size through-hole recommended)
+  <li>12k&ohm; resistor (SMD 0603 recommended)</li>
+  <li>2.4&ohm; resistor (SMD 1206 recommended) <i>[optional, increases the output current]</i></li>
+  <li>N-channel MOSFET (ZVN2106A recommended, 2N7000 works fine but is
+  larger)</li>    
+</ol>
+
+<h3 class=center>modification process</h3>
+
+<ol>
+  <li>
+    [optional] Add an additional 2.4&ohm; current sense resistor
+    to the unused pads left of the existing .360&ohm; resistor.
+    This will increase the maximum current output from 265mA to
+    305mA, about two extra steps of brightness range.
+  </li>
+  <li>
+    Replace the 22k&ohm; resistor R4 with 12k&ohm;.  Without
+    this change, the driver will not be able to fully turn off the
+    LEDs.
+  </li>
+  <li>
+    Carefully scrape away some of the conformal coating covering
+    the thin trace connecting the center pin of the input
+    connector to pin 3 of the controller IC.  The exposed
+    section should be just below the inductor (see
+    image below). Tin this exposed section.
+  </li>
+  <li>
+    Cut the same trace to the right of the exposed section such
+    that the exposed section of trace still leads to the center pin
+    of the input connector, but no longer connects to the IC (see image
+    below).
+  </li>
+</ol>
+    
+<div class=caption>
+  <a href="led-cheapybuck-pwm1-large.jpg">
+    <img src="led-cheapybuck-pwm1-large.jpg" /></a>
+  <p>Above: Highlighted locations for steps 1-4 of the untrimmed
+    Cheapybuck PWM mod. Click for a larger image.</p>
+</div>
+
+<ol start=5>
+  <li>
+    Solder the source of a MOSFET (2N7000 or ZVN2106A
+    recommended) to pin 3 of the controller IC.  Solder the
+    drain to the trace exposed in step 3.
+  </li>
+</ol>
+
+<div class=caption>
+  <a href="led-cheapybuck-pwm2-large.jpg">
+    <img src="led-cheapybuck-pwm2-large.jpg" /></a>
+  <p>Above: Placement of the MOSFET and solder joints in step 5.
+    If you use a 2N7000 instead of a ZVN2106A, the pinouts are the same but the
+    printing is on the other side.  Round side up!</p>
+</div>
+
+<ol start=6>
+  <li>
+    Solder a 1M&ohm; resistor between the MOSFET gate and the
+    upper unused pad of the non-existent C2 (ie, the positive
+    supply rail).
+  </li>
+  <li>
+    Also solder the cathode of a 2.4V zener diode (such as a
+    1N5221B) to the gate of the MOSFET.
+  </li>
+</ol>
+
+<div class=caption>
+  <a href="led-cheapybuck-pwm3-large.jpg">
+    <img src="led-cheapybuck-pwm3-large.jpg" /></a>
+  <p>Above: Placement of the 1M&ohm; resistor and zener diode in steps
+  6 and 7.  Click for a larger image.</p>
+</div>
+
+<p>The basic PWM mod is complete; what was originally the board's
+  on/off input (center pin of the input connector) is now the DIM
+  input.  The ENA input is the anode side of the zener diode.</p>
+
+<h2 id="tpwm">Tiny PWM-mode Mod</h2>
+
+<p>The Cheapybuck is small enough that there's no need to
+  aggressively cut down the board to fit onto existing inverters;
+  simply cut off the connectors and graft into place.  That said,
+  the Cheapybuck can be cut down to approximately 19mm x 9mm x 5mm
+  by relocating a few components. The schematic of the cut down mod
+  is the same except we use a different optional current-sense
+  resistor value. </p>
+
+<h3 class=center>parts needed</h3>
+<ol>
+  <li>2.4V Zener diode (through hole 1N5221B recommended)</li>
+  <li>1M&ohm; resistor (SMD 0603 recommended)</li>
+  <li>12k&ohm; resistor (SMD 0603 recommended)</li>
+  <li>3.3&ohm; resistor (SMD 1206 recommended) <i>[optional, increases the output current]</i></li>
+  <li>N-channel MOSFET (ZVN2106A recommended, 2N7000 works fine but is
+  larger)</li>
+  <li>A few centimeters of thin (roughly 30 gauge) wire</li>
+  <li>Low-profile 68&micro;H inductor (eg, Bourns SRR6028)</li>
+</ol>
+
+<h3 class=center>modification process</h3>
+
+<ol>
+  <li>
+    Relocate the .36&ohm; current sense resistor to just above
+    the controller IC, soldering it such that it bridges across
+    pins 4 and 5.  Be careful that neither joint accidentally
+    shorts to ground (the tab between the two pins).
+  </li>
+  <li>
+    [optional] Stack an additional 3.3&ohm; resistor onto the
+    .36&ohm; resistor, soldering it into place on top.  This
+    additional parallel resistor will increase the maximum
+    current output from 280mA to 310mA, adding about 1.5 steps
+    to the brightness range.
+  </li>
+  <li>
+    Replace the 22k&ohm; resistor R4 with 12k&ohm;.  Without
+    this change, the driver will not be able to fully turn off the
+    LEDs.
+  </li>
+  <li>
+    Relocate the input decoupling capacitor from the left side
+    of the board (where it's mistakenly labeled 'R5') to the
+    right side, soldering the upper lead of the capacitor to the
+    upper, unused pad of the nonexistent 'C2'.  Connect the lower
+    lead of the capacitor to the upper pad of R4; use either a
+    tiny piece of wire or form a solder-bridge (aka, 'giant glob
+    of solder'). Both approaches work fine.
+  </li>
+  <li>
+    Solder a lead (e.g., the red wire in the picture below) to
+    pin 4 of the controller IC.  This will be the LED+ connection
+    after cutting the board as pin 4 of the IC will be obscured by
+    subsequent assembly steps.
+  </li>
+  <li>
+    [optional] Replace the tall, unshielded inductor with a
+    low-profile shielded 68&micro;H inductor (a more correct
+    value according to the data sheet).  I use a Bourns SRR6028
+    series in the picture below.
+  </li>
+  <li>
+    [optional] Save another millimeter by snugging the SS14
+    diode a little closer to the inductor package.
+  </li>
+</ol>
+
+<div class=caption>
+  <a href="led-cheapybuck-pwm1-trimmed-large.jpg">
+    <img src="led-cheapybuck-pwm1-trimmed-large.jpg" /></a>
+  <p>Above: PCB after steps 1-7 of the trimmed-down PWM mod for a
+    Cheapybuck driver board.  Click for a larger image.</p>
+</div>
+
+<ol start=8>
+  <li>
+    Solder the source of a MOSFET (2N7000 or ZVN2106A
+    recommended) to pin 3 of the controller IC.  Unlike the
+    full-board mod, there's no need to solder the drain to
+    anything (yet).
+  </li>
+  <li>
+    Position a SMD 1M&ohm; resistor on top of the decoupling
+    capacitor and solder it's upper lead to the upper lead of
+    the capacitor.  Solder a piece of thin wire between the
+    lower resistor lead and the gate of the MOSFET.
+  </li>
+  <li>
+    Solder the cathode of a 2.4V zener diode (such as a 1N5221B) to
+    the gate of the MOSFET.
+  </li>
+</ol>
+
+<div class=caption>
+  <a href="led-cheapybuck-pwm2-trimmed-large.jpg">
+    <img src="led-cheapybuck-pwm2-trimmed-large.jpg" /></a>
+  <p>Above: PCB after step 10 of the trimmed-down PWM mod for a
+    Cheapybuck driver board.  
+    If you use a 2N7000 instead of a ZVN2106A, the pinouts are the same but the
+    printing is on the other side.  Round side up!</p>
+</div>
+
+<ol start=11>
+  <li>
+    Using diagonal cutters, part the board to the left of diode
+    D1 and to the right of the input decoupling capacitor and R4.
+    Consult the image below for exact cut position.
+  </li>
+  <li>
+    The LED- output can be taken either from the upper pad of
+    the inductor or by scraping off conformal coating to expose the
+    trace at the very upper right of the cut-down board.  The
+    picture below shows the latter option.
+  </li>
+    </ol>
+
+<div class=caption>
+  <a href="led-cheapybuck-pwm3-trimmed-large.jpg">
+    <img src="led-cheapybuck-pwm3-trimmed.jpg" 
+	 onmouseover="this.src='led-cheapybuck-pwm3-trimmed-over.jpg'"
+	 onmouseout="this.src='led-cheapybuck-pwm3-trimmed.jpg'"/></a>
+  <p>Above: Trimmed Cheapybuck board with completed PWM mod.
+    Mouse over the image to highlight and label the connection
+    points.</p>
+  
+</div>
+
+<p>At this point, the driver PCB is ready to
+  be <a href="led-inverter.html#graft">connected or grafted onto an
+  existing Thinkpad backlight inverter</a>. Or stuffed just about
+  anywhere really.</p>
+
+<!--#include virtual="toc-chinese.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <div>
+      Everything needed to update a CCFL ThinkPad to LED
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+        <ul>
+          <li>		
+    	    <a id=toc_simpleboost href="led-simpleboost.html">
+              Modding the &quot;Simpleboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_fancyboost href="led-fancyboost.html">
+              Modding the &quot;Fancyboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_unboosty href="led-unboosty.html">
+              Modding the &quot;Unboosty&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_unboostyB href="led-unboostyB.html">
+              Modding the &quot;Unboosty-Blue&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_cheapybuck href="led-cheapybuck.html">
+              Modding the &quot;Cheapybuck&quot Kit
+	    </a>
+          </li>
+        </ul>
+      </li> 
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+    (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+June 28, 2014
+<!--#include virtual="footer2.include" -->
+        </address>
+    </body>
+</html>

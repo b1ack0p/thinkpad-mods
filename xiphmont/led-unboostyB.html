@@ -1,0 +1,342 @@
+<!--#include virtual="header1.include" -->
+<!--#include virtual="header2.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+     {
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>The "Unboosty-Blue" Kit for Thinkpads</h1>
+<!--#include virtual="header3.include" -->
+<div class="or">
+    for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+  </div>
+</div>
+<div id=topnav>
+  &gt;
+  <a href="led-backlight.html">About</a> |
+  <a href="led-kit.html">LED Kits</a> |
+  <a href="led-kit.html#order">Order</a> |
+  <a href="led-panel.html">Installation</a> |
+  <a href="led-kit.html#FAQ">FAQ</a> |
+  <a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+<table class=kit>
+  <tr>
+    <th>unboosty blue</th>
+    <th>notes</th>
+    <th>dim&nbsp;range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="led-unboostyB.html#pwm">PWM-mode mod</a></td>
+    <td>
+      buck, 8-12V output<br />
+      3 LED segments, 9.6V nominal</td>
+    <td>8:1</td>
+    <td class=tr>$12-17</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-unboostyB.jpg">
+	<img src="led-unboostyB.jpg" />
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>Wide, customizable dimming range with continuous-drive mod</li>
+	<li class=plus>PCB layout more conducive to compact modding than original Unboosty</li>
+	<li class=neutral>Requires modification to work with Thinkpad brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Brightness can flicker with load</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>This appears to be another vendor's direct copy of
+the <a href="led-unboosty.html">Unboosty</a>... or is the
+Unboosty a copy of this kit?  It's the same circuit (using the DF6113
+boost controller IC <a href="DF6113.pdf">[datasheet]</a> as a low-side
+buck-down converter!), but on a different PCB using a smaller inductor
+and configured to put out lower current by default.  It expects to
+drive a constant-current LED string at between 8 and 12 volts such as
+the usual 9.6V constant-current strips that can be trimmed in groups
+of three LEDs.</p>
+
+<p>Like the Unboosty, this kit requires modification, such as the <a href="#pwm">PWM
+mod</a> below, to work with a Thinkpad.
+The modification process I've come up with for this board is slightly
+easier and more compact as compared to the original Unboosty. If you
+can solder SMD, this is currently my favorite kit.</p>
+
+<p class=in style="color: #bb4400;">
+  <em>Update and Warning</em>: Like the original Unboosy, these boards
+  can flicker noticably with the slightest shift in input voltage, eg
+  with processor load, regardless of the mod used.  There's no
+  correcting the problem no matter how fancy the mod--- it's a
+  consequence of lobotomizing a boost controller to use it in buck
+  mode.</p>
+
+<div class=caption>
+  <img class=schematic
+       src="led-unboostyB-schematic.png" />
+  <p>Above: Schematic of stock, unmodified &quot;Unboosty-Blue&quot; LED
+    driver board</p>
+</div>
+
+<hr />
+<h2 id="pwm">PWM-mode Mod</h2>
+
+<p>The PWM mod alters the driver board to use the Thinkpad's PWM brightness
+  signal as a direct backlight switching control. The PWM
+  frequency is 200Hz unless the OS changes it. If backlight
+  flicker bothers you, definitely use <a href="led-kit.html">one of
+  my continuous-mode driver boards</a> instead.</p>
+
+<div class=caption>
+  <img class=schematic
+       src="led-unboostyB-schematic-pwm.png" />
+  <p>Above: Schematic of the Unboosty-Blue driver board modified for
+    PWM-mode operation with a Thinkpad.  Red marks new or altered
+    components and connections, light gray shows removed
+    connections and components.</p>
+</div>
+
+<h3 class=center>parts needed</h3>
+
+<ol>
+  <li>1N4148 diode (through-hole DO35 recommended)</li>
+  <li>1.2&ohm; resistor (SMD 1206 recommended)
+  <li>Low-profile 4.7uH power inductor, e.g., Bourns SRP5030T <i>[if <a href="led-inverter.html#clearance">grafting onto a non-tablet inverter</a>]</i></li>
+</ol>
+
+<p>Specific package recommendations above are known to fit, but feel
+  free to mix whatever surface mount or through-hole components are
+  actually convenient. Resistor values should be 1% tolerance for best
+  results.</p>
+
+<h3 class=center>modification process</h3>
+
+<ol>
+  <li>Remove C5 completely.</li>
+  
+  <li>Remove R3 completely.</li>
+  
+  <li>Replace current sense resistor R4 with a 1.2&ohm; value.</li>
+  
+  <li>Solder the cathode of a 1N4148 diode to the left hand pad of the
+    former R3; solder the anode to either the lower exposed pad of the
+    former C5 or to pin 4 of the controller IC.</li>
+</ol>
+
+<div class=caption>
+  <a href="led-unboostyB-pwm-untrimmed.jpg">
+    <img src="led-unboostyB-pwm-untrimmed.jpg" /></a>
+  <p>Above: LED driver board after PWM mod.  Changes
+    from stock are circled in red.</p>
+</div>
+
+<p>After modding, the DIM input is now the board enable and the
+  ENA input is now a PWM-compatible brightness input (they're
+  mostly interchangeable really, but this arrangement is slightly
+  preferable). The board will put out approximately 320mA at max
+  brightness. Minimum brightness depends somewhat on PWM
+  frequency; the PWM signal switches the chip enable and the
+  converter has some turn-on lag.  At the BIOS default of 60Hz,
+  min brightness is about 40mA average for an adjustment range of
+  8:1.</p>
+
+<h3 class=center>trim-to-fit</h3>
+
+<p>If there's no space to stash the LED driver PCB somewhere in the
+  lid (or if you simply find adding the extra board inelegant), the
+  driver PCB as modified above can be trimmed as indicated below to
+  fit directly onto a stock Thinkpad inverter board. We only need to
+  move the output filtering capacitor first.</p>
+
+<div class=caption>
+  <a href="led-unboostyB-pwm-trimmed1.jpg">
+    <img src="led-unboostyB-pwm-trimmed1.jpg" /></a>
+  <p>Above: Trimming the Unboosty-Blue board down to a size
+  appropriate for grafting onto a Thinkpad inverter board requires
+  relocating only the output capacitor (red arrow), then parting the
+  board at the dotted red lines.</p>
+</div>
+
+<ol start=5>
+
+  <li>Remove the output capacitor from the board and set it aside now;
+  this makes later work a little easier.</li>
+  <li>Scrape away enough blue conformal coating to make two new
+  solder pads for relocating the output capacitor to just above the
+  inductor L1.  The pad on the right side should be long enough to
+  extend all the way to the edge of the trimmed board as it will also
+  serve as the LED- solder point.  Consult the photo below for the
+  correct location; note that it's not necessary to remove the
+  inductor, I did so in the photo to make the traces and pad locations
+  more visible.</li>
+  <li>Also scrape clear a new pad just below and right of the
+  inductor; this will serve as the LED+ solder point. Again, consult
+  the photo below for location and size.</li>
+</ol>
+  
+<div class=caption>
+  <a href="led-unboostyB-pwm-trimmed2.jpg">
+    <img src="led-unboostyB-pwm-trimmed2.jpg" /></a>
+  <p>Above: The locations to clear solder pads when preparing the
+  Unboosty-Blue board for trimming are circled in red. Inductor L1 has
+  been removed for clarity; it's not necessary to remove the inductor
+  to make the new pads.</p>
+</div>
+
+<ol start=8>
+  <li>Solder the output capacitor into its new location above L1.</li>
+  <li>Using diagonal cutters, part the left side of the PCB between
+  the input connector and input capacitor.</li>
+  <li>Part the right side of the PCB to the right of the inductor
+  along white line belonging to the white silkscreened box for
+  L1.</li>
+</ol>
+
+<div class=caption>
+  <a href="led-unboostyB-pwm-trimmed3-over.jpg">
+    <img src="led-unboostyB-pwm-trimmed3.jpg" 
+	 onmouseover="this.src='led-unboostyB-pwm-trimmed3-over.jpg'"
+	 onmouseout="this.src='led-unboostyB-pwm-trimmed3.jpg'"/></a>
+  <p>Above:Unboosty-Blue LED driver board with completed PWM mod,
+    trimmed so that it can be soldered onto a Thinkpad inverter.  This
+    board has also been fitted with a low-profile inductor.  Mouse
+    over the image to highlight and label the connection points.</p>
+</div>
+
+<p>That's all the trimming necessary to fit onto a tablet-model
+inverter, but if we're adding this board to a non-tablet inverter,
+we'll need to file down the top and bottom edges by about a
+millimeter. It might also be necessary to swap for a lower-profile
+inductor. See the <a href="led-inverter.html#clearance">section about
+dimensional restrictions on the inverter page</a>. Otherwise, the
+trimmed driver PCB is ready to
+be <a href="led-inverter.html#graft">grafted onto an existing
+Thinkpad backlight inverter</a>. </p>
+
+<!--#include virtual="toc-chinese.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <div>
+      Everything needed to update a CCFL ThinkPad to LED
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+        <ul>
+          <li>		
+    	    <a id=toc_simpleboost href="led-simpleboost.html">
+              Modding the &quot;Simpleboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_fancyboost href="led-fancyboost.html">
+              Modding the &quot;Fancyboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_unboosty href="led-unboosty.html">
+              Modding the &quot;Unboosty&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_unboostyB href="led-unboostyB.html">
+              Modding the &quot;Unboosty-Blue&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_cheapybuck href="led-cheapybuck.html">
+              Modding the &quot;Cheapybuck&quot Kit
+	    </a>
+          </li>
+        </ul>
+      </li> 
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+    (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+September 2, 2014
+<!--#include virtual="footer2.include" -->
+        </address>
+    </body>
+</html>

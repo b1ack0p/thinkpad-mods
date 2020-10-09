@@ -1,0 +1,413 @@
+<!--#include virtual="header1.include" -->
+<!--#include virtual="header2.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+     {
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>Connecting LED Backlights to Thinkpads</h1>
+<!--#include virtual="header3.include" -->
+<div class="or">
+    for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+  </div>
+</div>
+<div id=topnav>
+  &gt;
+  <a href="led-backlight.html">About</a> |
+  <a href="led-kit.html">LED Kits</a> |
+  <a href="led-kit.html#order">Order</a> |
+  <a href="led-panel.html">Installation</a> |
+  <a href="led-kit.html#FAQ">FAQ</a> |
+  <a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+<p>If you've modded a general-purpose LED driver for use in a
+ThinkPad, you'll need to find space for it in the Thinkpad lid
+and then wire it into the existing power and brightness controls.</p>
+
+<p>Of course, there's virtually no extra room in the lid of an
+X-series notebook.  The tablet models have a bit more space along the
+bottom of the LCD panel, but it's still cramped.  For all of these
+models, building a small-enough driver and installing it onto the
+existing inverter board is probably the easiest strategy.</p>
+
+<h2>Inverter Board Variants</h2>
+<h3>X40, X41, and submodels</h3>
+
+<p>The X40 and X41 models use a number a slightly different versions
+of [as far as I know] three basic inverter variants. One is specific
+to the tablet models, and two to the other models.  The inverters
+for a given model are functionally interchangeable.</p>
+
+<h3 class=imglabel>P/N 39T5655 [and 27K9993]</h3>
+<div class=caption>
+  <a href="led-inverter-39T5655-front.jpg">
+    <img src="led-inverter-39T5655-front.jpg" /></a>
+  <a href="led-inverter-39T5655-back.jpg">
+    <img src="led-inverter-39T5655-back.jpg" /></a>
+  <p>Above: Front and back views of inverter 39T5655 [Foxconn] for the Thinkpad
+  X40 and X41.  Inverter 27K9993 [AMBIT] appears to have an identical layout
+  with slightly different component choices and silkscreen
+  text.</p>
+  <p>Components to be removed are circled in red. Locations of the
+  power, ENA, and DIM connections are highlighted in blue.  Click for
+  a larger image.</p>
+</div>
+
+<h3 class=imglabel>P/N 39T5657 [and 27K9991]</h3>
+<div class=caption>
+  <a href="led-inverter-39T5657-front.jpg">
+    <img src="led-inverter-39T5657-front.jpg" /></a>
+  <a href="led-inverter-39T5657-back.jpg">
+    <img src="led-inverter-39T5657-back.jpg" /></a>
+  <p>Above: Front and back views of inverter 39T5657 for the Thinkpad
+  X40 and X41.  Inverter 27K9991 appears to have an identical layout
+  with slightly different component choices.</p>
+  <p>Components to be removed are circled in red. Locations of the
+  power, ENA, and DIM connections are highlighted in blue. The DIM
+  signal can also be pulled from pin 25 of the inverter connector.
+  Click for a larger image.</p>
+</div>
+
+<h3 class=imglabel>FRU 41W1109 [P/N 41W1110]</h3>
+<div class=caption>
+  <a href="led-inverter-41W1109-front.jpg">
+    <img src="led-inverter-41W1109-front.jpg" /></a>
+  <p>Above: Front view of inverter 41W1109 for the Thinkpad
+  X40 and X41 tablet models. Components to be removed are circled in
+  red. Locations of the power, ENA, and DIM connections are
+  highlighted in blue. Click for a larger image.</p>
+</div>
+
+<h3>X60, X61, and submodels</h3>
+
+<p>The six X60 and X61 models use one of (as far as I know) four
+possible inverter boards. Two are specific to the tablet models, and
+two to the other models.  The inverters for a given model are
+functionally interchangeable.</p>
+
+<h3 class=imglabel>FRU 41W1468 (P/N 41W1437)</h3>
+<div class=caption>
+  <a href="led-inverter-41W1468-front.jpg">
+    <img src="led-inverter-41W1468-front.jpg" /></a>
+  <a href="led-inverter-41W1468-back.jpg">
+    <img src="led-inverter-41W1468-back.jpg" /></a>
+  <p>Above: Front and back views of inverter FRU 41W1468 for the
+  Thinkpad X60 and X61 tablets.  Components to be removed are circled
+  in red. Locations of the power, ENA, and DIM connections are
+  highlighted in blue. ENA and DIM can be taken either from the small
+  testpoint or from the neighboring resistor's pad. Click for a larger
+  image.</p>
+</div>
+
+<h3 class=imglabel>FRU 41W1469 (P/N 41W1470)</h3>
+<div class=caption>
+  <a href="led-inverter-41W1469-front.jpg">
+    <img src="led-inverter-41W1469-front.jpg" /></a>
+  <a href="led-inverter-41W1469-back.jpg">
+    <img src="led-inverter-41W1469-back.jpg" /></a>
+  <p>Above: Front and back views of inverter FRU 41W1469 for the Thinkpad
+  X60 and X61 tablets.  Components to be removed are circled in
+  red. Locations of the power, ENA, and DIM connections are
+  highlighted in blue. Click for a larger image.</p>
+</div>
+
+<h3 class=imglabel>FRU 39T5699</h3>
+<div class=caption>
+  <a href="led-inverter-39T5699-front.jpg">
+    <img src="led-inverter-39T5699-front.jpg" /></a>
+  <a href="led-inverter-39T5699-back.jpg">
+    <img src="led-inverter-39T5699-back.jpg" /></a>
+  <p>Above: Front and back views of inverter FRU 39T5699 for Thinkpad
+  X60, X60s, X61, and X61s.  Components to be removed are circled in
+  red. Locations of the power, ENA, and DIM connections are
+  highlighted in blue. Click for a larger image.</p>
+</div>
+
+
+<h3 class=imglabel>FRU 42T0152 (P/N 042T0151)</h3>
+<div class=caption>
+  <a href="led-inverter-42T0152-front.jpg">
+    <img src="led-inverter-42T0152-front.jpg" /></a>
+  <a href="led-inverter-42T0152-back.jpg">
+    <img src="led-inverter-42T0152-back.jpg" /></a>
+  <p>Above: Front and back views of inverter FRU 42T0152 for Thinkpad
+  X60, X60s, X61, and X61s.  Components to be removed are circled in
+  red. Locations of the power, ENA, and DIM connections are
+  highlighted in blue. Click for a larger image.</p>
+</div>
+
+<h2>Component Removal</h2>
+
+<p>The components that are necessary to remove are the same on all
+four inverter boards, but located in different places (see pictures
+above).  Remove the step-up coils, coil output capacitor, the
+three-terminal diode package, and controller IC.  The IC can be
+removed either using a parallel/tweezer soldering tool, or by applying
+sufficient heat to the IC package.  The solder pads for the IC leads
+are fragile and will lift easily, but if neatness isn't a requirement,
+destroying the pads won't cause any trouble for our use. Do not leave
+any shorts from solder bridges between the pads.</p>
+
+<p>A few other components are circled on the front of the boards
+mainly because they're no longer used and potentially get in the way.
+Don't simply wipe random components off the inverters; some are needed
+for the buttons and secondary lid switch on the tablets, or the LEDs on
+the other models.</p>
+
+<div class=caption>
+  <a href="led-inverter-remove-ic.jpg">
+    <img src="led-inverter-remove-ic.jpg" /></a>
+  <p>Above: Hot air or a parallel removal tool are the easiest ways to
+  neatly remove the controller IC. Alternately just use an iron to apply
+  sufficient heat to the IC package to melt the solder on the leads
+  and underlying pad.</p>
+</div>
+
+<h2 id=clearance>X60, X60s, X61, and X61s Board Dimensions</h2>
+
+<p>If you're not using <a href="led-kit.html">one of my ThinkPad LED
+conversion boards</a>, you'll probably need to trim your driver board
+to fit in place on the ThinkPad inverter.</p>
+
+<p>The inverter boards on the tablet models can accomodate an LED
+controller PCB as large as 46mm (length) by 11.5mm (width) by 5.25mm
+(height).  Clearances in the X6X and X6Xs (and other thinkpad models)
+are somewhat tighter than on the tablet models. The final inverter
+board, mounted on-edge, can be no taller than about 10mm else the lid
+bezel will no longer mate flat.  The board can also be no thicker than
+about 6mm for a clean fit along the inner edge of the lid.  Thicker
+assemblies will fit, but only if we bend the inverter board into place
+(note that even the stock board is flexed slightly, presumably to keep
+it wedged into position so it doesn't rattle). If we wish to reuse the
+slip-on inverter shield (probably a good idea), that restricts the
+maximum LED driver PCB size further.</p>
+
+<div class=center>
+<img src="inverter-drawing.png" />
+</div>
+
+<p>All restrictions considered, an LED driver board that fits onto any
+  X6X model's inverter and still be able to slip the original inverter
+  shield back into place shouldn't exceed 46mm (length) by 9.25mm
+  (width) by 4.4mm (thick).</p>
+
+<p>For example, the <a href="led-simpleboost.html">Simpleboost</a>,
+  <a href="led-unboosty.html">Unboosty</a>,
+  and <a href="led-unboostyB.html">Unboosty-Blue</a> kit driver
+  boards, even built in trimmed form, are all slightly taller than
+  10mm. That said, they have no delicate traces near the board
+  edges. The top and bottom edges can be cut, filed, or sanded down to
+  bring the board height down as far as 9mm, leaving more than enough
+  room to slip the original 9.5mm tall plastic inverter shield back
+  into place.</p>
+
+<div class=caption>
+  <a class=left href="led-inverter-width.jpg">
+    <img style="width: 39.278%;" src="led-inverter-width.jpg" /></a>
+  <a class=center href="led-inverter-height.jpg">
+    <img style="width: 32.557%;" src="led-inverter-height.jpg" /></a>
+  <a class=right href="led-inverter-thickness.jpg">
+    <img style="width: 27.873%;" src="led-inverter-thickness.jpg" /></a>
+
+  <p>Above: PWM-modded <a href="led-unboostyB.html">Unboosty-Blue</a>
+  board trimmed and fitted with a low-profile inductor. It's well
+  within the 46mm x 9.25mm x 4.4mm limit to fit easily on any
+  model.</p>
+</div>
+
+<p>Thickness is potentially a larger problem due to inductor height.
+  The LED backlight kits use different inductor parts from batch to
+  batch; some examples of a given kit will fit as-is, most will not.
+  On non-tablet models, you will probably need to swap the stock
+  inductor for a lower-profile option.  Inductors with a 6028
+  footprint are fairly common and fit nicely.</p>
+
+<p>There's one last bit of board prep that eases later assembly:
+ Undercut the edges of the underside of the board slightly.  This
+ helps prevent accidental shorts when soldering the board in place
+ later, especially near the output connector.</p>
+
+<div class=caption>
+  <a href="led-inverter-undercut.jpg">
+    <img src="led-inverter-undercut.jpg" /></a>
+  <p>Above: Undercutting the bottom of a trimmed LED driver board before
+  installation moves exposed copper away from the edges, helping
+  prevent any accidental shorts during final assembly.</p>
+</div>
+
+<h2>LED Driver Installation</h2>
+
+<p>We attach the trimmed LED driver board to the empty area on the
+inverter previously occupied by the inverter coil. The easiest option
+is some adhesive transfer tape (ie, double sticky tape made for
+permanent industrial assembly). We could also just crazy-glue the
+board in place, but tape is less messy, reversible, and provides some
+additional electrical insulation from the exposed solder pads on the
+underlying board 'just in case'.</p>
+
+<div class=caption>
+  <a href="led-inverter-tape.jpg">
+    <img src="led-inverter-tape.jpg" /></a>
+  <p>Above: The modded and trimmed LED driver will be mounted to the
+  inverter where the coils were previously located.  Adhesive transfer
+  tape, eg, Killer Red, will hold the LED board firmly as well as
+  provide some electrical insulation from the exposed solder pads on
+  the underlying board.</p>
+</div>
+
+<p>Finally, we connect the driver board.  Solder bridges ('giant globs
+of solder') work well enough to connect the LED + and - pads on some
+drivers to the output
+connector. The <a href="led-simpleboost.html">Simpleboost</a>'s LED -
+connection and the <a href="led-cheapybuck.html">Cheapybuck</a>'s LED
++ connection are in the middle of their respective PCBs, and so
+require wire. Most of the generic kits come with a useless little wire
+harness; feel free to cut and reuse this wire for connections.</p>
+
+<p>On the input side, VCC and ground can be tapped from a preexisting
+supply decoupling capacitor on the front of the inverter.  ENA and DIM
+can be pulled from specific points on the back (see the labeled pics
+at the top of the section and the completed pictures below).  This
+isn't the only way, or even the visually cleanest way to connect things
+up, but it's simple, straightforward, and works well.</p>
+
+<div class=caption>
+  <div class=label>inverter 41W1468</div>
+  <a class=round href="led-inverter-41W1468-connection.jpg">
+    <img src="led-inverter-41W1468-connection.jpg" /></a>
+  <div class=label>inverter 41W1469</div>
+  <a href="led-inverter-41W1469-connection.jpg">
+    <img src="led-inverter-41W1469-connection.jpg" /></a>
+  <div class=label>inverter 39T5699</div>
+  <a href="led-inverter-39T5699-connection.jpg">
+    <img src="led-inverter-39T5699-connection.jpg" /></a>
+  <div class=label>inverter 42T0152</div>
+  <a href="led-inverter-42T0152-connection.jpg">
+    <img src="led-inverter-42T0152-connection.jpg" /></a>
+  <p>Above: Closeups of the ENA and DIM connections on the back of
+  inverter boards 41W1468 (top), 41W1469 (middle top), 39T5699 (middle
+  bottom), and 42T0152 (bottom).  Just in case anyone notices, I
+  accidentally removed an extra capacitor next to the controller IC
+  along with the IC itself on the 39T5699.  It has no effect on the
+  modded board.</p>
+</div>
+
+<p>Once everything is soldered in place, connect the completed
+inverter onto the LCD cable, plug the LED strip into the inverter and
+boot the computer to test.  Neither the screen nor hard drive need to
+be connected for the test, that is, a full boot is not required for
+the backlight to fire and the brightness controls to work.</p>
+
+<p>If the backlight does not fire within a count of ten after pressing
+the power button, shut the machine off and look for problems. Both the
+ThinkPad and the LED driver boards are pretty robust, but, eg, an
+output short can eventually overheat and damage the inductor on the
+LED driver.</p>
+
+<p>After testing, it's a good idea to use a little CA glue to fix the
+connections and added components firmly in place.  Slip the plastic
+inverter shield back in place (or wrap in insulating tape) to complete
+the inverter conversion.</p>
+
+<div class=caption>
+  <a href="led-inverter-39T5699-complete.jpg">
+    <img src="led-inverter-39T5699-complete.jpg" /></a>
+  <a href="led-inverter-39T5699-complete-shield.jpg">
+    <img src="led-inverter-39T5699-complete-shield.jpg" /></a>
+  <p>Above: <a href="led-TLD1.shtml">TLD1</a> driver
+  grafted onto a 39T5699 inverter board (top) and with the mounting
+  bracket and plastic inverter shield replaced (below).</p>
+</div>
+
+<!--#include virtual="toc.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <div>
+      Everything needed to update a CCFL ThinkPad to LED
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+      </li>
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+    (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+June 21, 2016
+<!--#include virtual="footer2.include" -->
+        </address>
+    </body>
+</html>

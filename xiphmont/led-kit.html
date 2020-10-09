@@ -1,0 +1,391 @@
+<!--#include virtual="header1.include" -->
+<!--#include virtual="header2.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+     {
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>Kits and Parts for ThinkPad LED Conversions</h1>
+<!--#include virtual="header3.include" -->
+<div class="or">
+    for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+  </div>
+</div>
+<div id=topnav>
+  &gt;
+  <a href="led-backlight.html">About</a> |
+  <a href="led-kit.html">LED Kits</a> |
+  <a href="led-kit.html#order">Order</a> |
+  <a href="led-panel.html">Installation</a> |
+  <a href="led-kit.html#FAQ">FAQ</a> |
+  <a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+<h2 style="margin-top: 0px;">
+<a href="led-parts.jpg">
+  <img class=rightpic src="led-parts.jpg" />
+</a>
+Everything Needed</h2>
+
+<p>Converting a CCFL-equipped ThinkPad to use an LED backlight
+requires an LED backlight driver to replace the CCFL inverter and an
+LED backlight strip to replace the CCFL tube.  It's also useful to
+have some thin plastic shims to fit the LED strip snugly in place.<p>
+
+<p>The conversion kits below include all three items, which are also
+available as individual parts.  The parts and kits come in two basic
+flavors: the 'Original' kit and the new 'Daylight' kit.  From there,
+the needed LED driver also depends on the model of ThinkPad.</p>
+
+<hr />
+
+<h2>
+<a href="led-originalkit.jpg">
+  <img class=rightpic src="led-originalkit.jpg" />
+</a>
+Original kit</h2>
+
+<p>Original-version kits are available for the X41, X41T, X60, X60s, X60T, X61, X61s and X61T.</p>
+
+<ul>
+<li>Drop-in 335mA ThinkPad LED driver
+<li>LED strip using general purpose lighting LEDs
+<li>1.5mm x 300mm flat plastic shims
+</ul>
+
+<p>The Original kit uses a decent Chinese white LED strip paired with
+one of my own driver boards.  The driver and LED strip are matched for
+a max output of 335mA, the rated limit of the LED strip. At
+full brightness, the LED strip uses 3.2W.</p>
+
+<p>This kit is recommended for TN screens and will also work well with
+AFFS XGA screens.  It is not recommended for SXGA screens, as most
+HV121P01-100 and HV121P01-101 will show
+a <a href="led-sxgaripple.jpg">rippling mirrored pattern from
+individual LEDs</a> along the bottom inch or so of the screen. SXGA
+screens require a Daylight kit,
+which <a href="led-sxgaripple-daylight.jpg">eliminates the rippling
+pattern</a>.</p>
+
+<h2>
+<a href="led-daylightkit.jpg">
+  <img class=rightpic src="led-daylightkit.jpg" />
+</a>
+Daylight kit</h2>
+
+<p>Daylight kits are available for the X41, X41T, X60, X60s, X60T, X61, X61s and X61T.</p>
+
+<ul>
+<li>Drop-in 600mA Daylight ThinkPad LED driver
+<li>Daylight LED strip using <a href="NSSW157F-HG-E.pdf">Nichia NSSW157F-HG</a> LEDs
+<li>1.5mm x 300mm flat and accordian plastic shims
+</ul>
+
+<p>The Daylight kit is an upgrade intended for XGA and SXGA AFFS
+screens (i.e. "the really nice screens").  It pairs the new
+range-adjustable TLD3 driver board with a custom LED strip using Nichia's
+latest-generation component-phosphor LEDs designed specifically for
+backlights. It's two to three times as bright as the Original kit with
+substantially improved <a href="led-gamut.html">gamut coverage exceeding the original CCFL</a>.</p>
+
+<p>The Nichia LEDs also allow Daylight kits to run at a higher 600mA
+current compared to the Original kit.  At full brightness the LED
+backlight uses 4.8W.</p>
+
+<p>The use of closely-packed, wide-angle, low-profile LEDs along with
+an accordian shim eliminates the 'rippling' pattern seen along the
+bottom of SXGA screens when using other strips.</p>
+
+<h2>
+<a href="led-driver.jpg">
+  <img class=rightpic src="led-driver.jpg" />
+</a>
+Individual backlight drivers</h2>
+
+<p>LED backlight drivers are made by fitting custom LED driver boards
+to existing ThinkPad inverter PCBs in place of the CCFL step-up coil.
+This strategy leaves all the other functionality of the inverter board
+completely in-tact.  The indicator LEDs still work, as do the sensors
+and pushbuttons on the tablet models.</p>
+
+<p>I currently use three different driver boards, imaginatively
+named <a href="led-TLD1.html">ThinkPad LED Driver
+1</a>, <a href="led-TLD2.html">ThinkPad LED Driver 2</a>,
+and <a href="led-TLD3.html">ThinkPad LED Driver 3</a>.</p>
+
+<p>TLD1 and TLD2 were the original test prototypes (which turned out
+to work well.) TLD3 is an update of the TLD1 layout adding two
+surface mount potentiometers that allow easy adjustment of the
+brightness range and step spacing.</p>
+
+<p>The <a href="led-TLD1.html">TLD1</a>, <a href="led-TLD2.html">TLD2</a>,
+and <a href="led-TLD3.html">TLD3</a> boards are available alone or
+pre-mounted to a ThinkPad inverter PCB.</p>
+
+<h2>
+<a href="nichiastripv3se1.jpg">
+  <img class=rightpic src="nichiastripv3se1.jpg" />
+</a>
+Individual LED backlight strips</h2>
+
+<p>The 'Original' LED strips are Chinese white-LED strips originally
+bought in a large batch through iCCFL.com.  I measured each strip
+with a spectrometer and divided them by whitepoint into 'good for TN'
+(warmer / higher CIE Y coordinate value) and 'good for AFFS' (colder /
+lower CIE Y coordinate value).  I don't intend to stock more once
+these are all gone, as the color-suitability of Chinese strips is so
+hit-or-miss.</p>
+
+<p>The 'Daylight' LED strips are all made from the same bin of Nichia
+NSSW157F-HG LEDs.  The output spectrum is suitable for all AFFS
+screens.  Colors will also be good with TN, though slightly cold
+(about 7500-8000K).</p>
+
+<p>Original strips for 4:3 12.1&quot; screens are trimmed to 250mm of
+lit area.  Daylight strips are a slightly shorter 246mm to prevent
+bright corners on SXGA screens.</p>
+
+<h2>Shims</h2>
+
+<p>The plastic shims used in these kits are simply 1.5mm by ~300mm
+strips of Teflon or Mylar-D; any plastic with a working deformation
+temperature above 100C is appropriate.</p>
+
+<p>The thin shim strips are approximately 10-mil (.25mm) thick and the
+thicker strips approximately 30-mil (.75mm).  Accordian strips are
+5mil (.125mm) mylar cut along the grain, and folded into an accordian
+with bends approximately a centimeter apart.</p>
+
+<p>I'm happy to send shim strips (and they're included in the kits),
+but these materials should be available from any good hobby or
+modeling shop.</p>
+
+<h2 id=order>
+<a href="led-pcb-mouse.jpg">
+  <img class=rightpic src="led-pcb-mouse.jpg" />
+</a>
+Part Prices and Ordering</h2>
+
+<ul>
+  <li><b>Original LED Conversion Kit</b>: $25 each</li>
+  <li><b>Daylight LED Conversion Kit</b>: $48 each</li>
+  <li><b>TLD1, TLD2 driver PCB</b> (unpopulated PCB only): $5 each</li>
+  <li><b>TLD3 driver PCB</b> (unpopulated PCB only): $1 each</li>
+  <li><b>Assembled TLD driver</b> (not mounted on inverter): $15 each</li>
+  <li><b>Assembled TLD driver and inverter</b> (ready to plug in): $20 each</li>
+  <li><b>'Original' LED strip, 250mm</b> (335mA): $5 each</li>
+  <li><b>'Daylight' LED strip, 246mm</b> (600mA): $28 each</li>
+</ul>
+
+<p>Prices above do not include shipping.  Domestic first-class postage
+within the USA is currently an additional $2.45 and now includes
+tracking.  International first class is $13.50 without tracking;
+International registered mail with tracking is $27.45. Up to five kits
+fit in a single box.</p>
+
+<p>Please <a href="mailto:xiphmont@gmail.com">contact me</a> to place
+an order, even if you already know my PayPal address.  I make these
+parts on-demand, so I want you to be aware of any backlog. I'm also
+happy to make custom versions of parts, as well as longer LED strips
+for other screens. Be sure to let me know exactly what parts you want,
+Original or Daylight, and what ThinkPad model.</p>
+
+<hr />
+
+<h2>Installation instructions</h2>
+
+<p>Exhaustive installation instructions are on
+the <a href="led-panel.html">Installing LED Backlights into Thinkpad
+LCDs</a> page.  The instructions cover multiple screens and ThinkPad
+models, as well as general installation tips for modders making their
+own custom kits.<p>
+
+<hr />
+
+<h2 id=FAQ>FAQ</h2>
+
+<a href="led-CCFLgamut.png">
+  <img class=rightpic src="led-CCFLgamut.png" />
+</a>
+
+<a href="led-NICHIAgamut.png">
+  <img class=rightpic style="clear: right;" src="led-NICHIAgamut.png" />
+</a>
+
+<h3>How bright can I expect an LED backlight to be?</h3>
+
+<p>It depends on the screen and the kit.  Using the same LED strip, TN
+screens are brightest, followed by the XGA AFFS screens, followed by
+the SXGA screens.</p>
+
+<p>An Original kit can be expected to hit 400 nits in a TN
+screen and about 300 nits in an XGA AFFS screen.  A Daylight kit will
+exceed 800 nits in an XGA screen, and reach somewhere between 550 and
+750 nits in an SXGA screen depending on how the strip is fitted.</p>
+
+<h3>Will colors look normal?</h3>
+
+<p>An Original kit produces less saturated colors than the
+original CCFL backlight.  Reds especially become somewhat muted.  The
+screen will not look especially odd, but it will look noticably less
+colorful.</p>
+
+<p>A Daylight kit produces significantly better color than the
+original CCFL, and comes much closer to ideal coverage of the standard
+sRGB gamut, especially with AFFS screens.</p>
+
+<h3>Is there any backlight flicker using these kits?</h3>
+
+<p>No. The LED driver board converts the ThinkPad's PWM
+brightness control signal to an analog level that regulates the
+LED current.  The LEDs are powered by a steady, continuous current
+across the entire brightness range.</p>
+
+<h3>Do the indicator LEDs still work normally?</h3>
+
+<p>Yes.  The status LEDs are unaffected by an LED upgrade.</p>
+
+<h3>Do the ThinkPad brightness controls work normally?</h3>
+
+<p>Yes. The custom driver boards are designed to use native ThinkPad brightness signaling.</p>
+
+<h3>Why do e.g. the X60 and X61 need different LED drivers when they used the same CCFL inverter?</h3>
+
+<p>LEDs are so much brighter than CCFLs that it's important to make
+the brightness range and spacing as useful as possible.  For example,
+we don't want the minimum brightness to be too bright to use
+comfortably in dim lighting.</p>
+
+<p>CCFL ThinkPads all use the same brightness control system, but
+different ThinkPads use different brightness ranges and step
+spacing.  The X60, for example, uses a relatively narrow,
+exponentially spaced brightness range with 8 steps.  The X61 uses a
+different, wider, 16-step linear spacing.</p>
+
+<p>These spacings were designed to work with specific CCFL lamps. LEDs
+behave differently, especially at low brightness levels.  As a result,
+the LED driver boards must be 'trimmed' for the best behavior with a
+given model's brightness range.</p>
+
+<p>TLD1 and TLD2 boards are trimmed by soldering approriate resistors
+into the level translation circuit, so they're assembled for specific
+ThinkPad models.  The TLD3 board can be trimmed for any model via two
+potentiometers, but it's still shipped out pre-adjusted for a given
+model.</p>
+
+<h3>Does the newest TLD3 board work better than the TLD1 and TLD2?</h3>
+
+<p>TLD3 should be more physically robust to rough handling, but it
+functions exactly the same.</p>
+
+<p>The main difference is that the TLD1 and TLD2 boards must be
+adjusted by desoldering and replacing trimming resistors, where the
+TLD3 is adjusted via two potentiometers.</p>
+
+<h3>Where can I find schematics, design docs, Gerbers, etc, for these parts?</h3>
+
+<ul>
+<li><a href="led-TLD1.html">Driver board TLD1</a></li>
+<li><a href="led-TLD2.html">Driver board TLD2</a></li>
+<li><a href="led-TLD3.html">Driver board TLD3</a></li>
+<li><a href="led-strip.html">Daylight LED strip</a></li>
+<li><a href="led-inverter.html">Electrical connection points for LED drivers</a></li>
+</ul>
+
+<h3>May I use the schematics and Gerbers to make/sell my own boards?</h3>
+
+<p>Go for it! Feel free to use and improve these designs any way you
+wish.  If you want to make and sell parts (and save me the trouble),
+be my guest!
+
+<!--#include virtual="toc.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <div>
+      Everything needed to update a CCFL ThinkPad to LED
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+      </li>
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+    (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+June 21, 2016
+<!--#include virtual="footer2.include" -->
+        </address>
+    </body>
+</html>

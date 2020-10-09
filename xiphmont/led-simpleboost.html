@@ -1,0 +1,332 @@
+<!--#include virtual="header1.include" -->
+<!--#include virtual="header2.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+     {
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>The "Simpleboost" Kit for Thinkpads</h1>
+<!--#include virtual="header3.include" -->
+<div class="or">
+    for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+  </div>
+</div>
+<div id=topnav>
+  &gt;
+  <a href="led-backlight.html">About</a> |
+  <a href="led-kit.html">LED Kits</a> |
+  <a href="led-kit.html#order">Order</a> |
+  <a href="led-panel.html">Installation</a> |
+  <a href="led-kit.html#FAQ">FAQ</a> |
+  <a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+<table class=kit>
+  <tr>
+    <th>simpleboost</th>
+    <th>notes</th>
+    <th>dim range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="#pwm">PWM-mode mod</a></td>
+    <td>
+      boost, 30-50V output,<br />
+      10 LED strings minimum for 20V input</td>
+    <td>6:1</td>
+    <td class=tr>$15-20</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-simpleboost-large.jpg">
+	<img src="led-simpleboost-large.jpg" /></a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>The PWM mod is simple to make both in full-sized and
+	  trimmed form using either surface mount or through-hole
+	  components.</li>
+	<li class=neutral>Requires modification to work with Thinkpad
+	brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Tighter requirements for LED
+	  strips than the other kits (each series string must be at least 10 LEDs)</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>This driver is a simple boost convertor with constant-current
+  output.  Some vendors sell it with an additional flat-ribbon
+  connector, most sell it with the ribbon connector missing and
+  those solder pads left bare as in the pic above. The identifcation
+  marks on the controller IC are usually ground off; I don't know
+  why some Chinese vendors do this. The IC is the DF6113 boost
+  controller popular in many LED drivers, and this board's design is
+  straight off of the <a href="DF6113.pdf">DF6113's
+    datasheet</a>.
+</p>
+
+<div class=caption>
+  <img class=schematic src="led-simpleboost-schematic.png" />
+  <p>Above: Schematic of stock, unmodified &quot;Simpleboost&quot; LED
+  driver board</p>
+</div>
+
+<p>The LEDs provided with the kit must be arranged in at least 10S
+  strings for Thinkpads with internal 20V power (like the
+  X60/61-series) else the LEDs will never go out completely even
+  when the machine is 'off'. It seems these 12.1&quot;/255mm kits
+  usually come with 60 LEDs in 10S/6P; that works fine.</p>
+
+<p>This controller board requires modification (such as the one below)
+  for use with a Thinkpad.</p>
+
+<hr />
+<h2 id="pwm">PWM-mode Mod</h2>
+
+<p>The PWM mod alters the driver board slightly to use the Thinkpad's
+  PWM brightness signal as a direct backlight switching control. The
+  PWM frequency is 200Hz unless the OS changes it. If backlight
+  flicker bothers you, definitely use <a href="led-kit.html">one of
+  my continuous-mode driver boards</a> instead.</p>
+
+<div class=caption>
+  <img class=schematic
+       src="led-simpleboost-schematic-pwm.png" />
+  <p>Above: Schematic of the Simpleboost driver board modified for
+    PWM-mode operation with a Thinkpad.  Red marks new or altered
+    components and connections, light gray shows removed
+    connections and components.</p>
+</div>
+
+<h3 class=center>parts needed</h3>
+
+<ol>
+  <li>1n4148 diode (through-hole DO35 recommended)</li>
+  <li>3.9&ohm; resistor (SMD 1206 recommended)</li>
+  <li>50V 1&micro;F capacitor (SMD tantalum recommended)</li>
+</ol>
+
+<p>Specific package recommendations above are known to fit, but
+  feel free to use either surface mount or through-hole components as
+  convenient. Resistor values should be 1% tolerance for best
+  results.</p>
+
+<h3 class=center>modification process</h3>
+
+<ol>
+  <li>
+    Remove the resistor marked '243', located below and to the
+    right of the controller IC.
+  </li>
+  
+  <li>
+    Solder the cathode of a 1n4148 diode to the now unused left
+    pad exposed by removing the resistor in step 1.  Solder the
+    anode of the diode to pin 4 of the controller IC.
+  </li>
+  
+  <li>
+    Replace the large orange 10&micro;F tantalum output filter
+    capacitor (marked 106T) with a 1&micro;F output capacitor rated
+    for 50V.  This step
+    is not strictly necessary, but without it, the dimming range
+    will be very small (3:1 or less).
+  </li>
+  
+  <li>[optional] Replace the two 10&ohm; current sense resistors
+    (marked 100, to the right of the output filter capacitor) with
+    a single 3.9&ohm; resistor.  This increases the regulated
+    output current from 85mA to 110mA.
+  </li>
+</ol>
+
+<div class=caption>
+  <a href="led-simpleboost-pwm-large.jpg">
+    <img src="led-simpleboost-pwm-large.jpg" /></a>
+  <p>Above: Simpleboost driver board after PWM-mode mod.  Changes
+    from stock are circled in red. Click for a larger image.</p>
+</div>
+
+<p>After modding, the DIM input is now the board enable and the
+  ENA input is now a PWM-compatible brightness input (they're
+  mostly interchangeable really, but reversing them will alter the
+  output current drive slightly.</p>
+
+<h3 class=center>trim-to-fit</h3>
+
+<p>If there's no space to stash the LED driver PCB somewhere in
+  the lid (or if you simply find adding the extra board
+  inelegant), the driver PCB can be trimmed down to fit directly onto
+  a stock Thinkpad inverter board. We only need to relocate the
+  current sense resistor from the right to the left side of the
+  output capacitor.</p>
+
+<ol start=5>
+  <li>
+    Expose a portion of the LED- and ground traces immediately
+    to the left of the output filter capacitor by carefully
+    scraping away some of the blue conformal coating.  See the
+    image below for the correct location.
+  </li>
+</ol>
+
+<div class=caption>
+  <a href="led-simpleboost-pwm-trimmed1-large.jpg">
+    <img src="led-simpleboost-pwm-trimmed1-large.jpg" /></a>
+  <p>Above: Trimming the Simpleboost driver board requires
+    relocating the current sense resistor; expose the circled trace
+    areas to make new pads for the resistor. Click for a larger
+    image.</p>
+</div>
+
+<ol start=6>
+  <li>
+    Move the 3.9&ohm; resistor to the newly exposed solder pads.
+  </li>
+  <li>
+    Using diagonal cutters, part the board along the left side
+    of the inductor and to the right of the output filter
+    capacitor. 
+  </li>
+</ol>
+
+<div class=caption>
+  <a href="led-simpleboost-pwm-trimmed2-large.jpg">
+    <img src="led-simpleboost-pwm-trimmed2.jpg" 
+	 onmouseover="this.src='led-simpleboost-pwm-trimmed2-over.jpg'"
+	 onmouseout="this.src='led-simpleboost-pwm-trimmed2.jpg'"/></a>
+  <p>Above: Trimmed LED driver board with completed PWM mod
+    intended to be soldered onto a Thinkpad inverter.  Mouse over
+    the image to highlight and label the connection points.</p>
+</div>
+
+<p>Note that we've cut the power supply decoupling capacitor off
+  along with the input connector.  We don't need it in this case;
+  the DF6113 is a fairly stable controller and we'll use a
+  decoupling capacitor as our power tap when
+  we <a href="led-inverter.html">graft the driver onto an inverter
+    board</a>.
+</p>
+  
+<!--#include virtual="toc-chinese.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <div>
+      Everything needed to update a CCFL ThinkPad to LED
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+        <ul>
+          <li>		
+    	    <a id=toc_simpleboost href="led-simpleboost.html">
+              Modding the &quot;Simpleboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_fancyboost href="led-fancyboost.html">
+              Modding the &quot;Fancyboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_unboosty href="led-unboosty.html">
+              Modding the &quot;Unboosty&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_unboostyB href="led-unboostyB.html">
+              Modding the &quot;Unboosty-Blue&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_cheapybuck href="led-cheapybuck.html">
+              Modding the &quot;Cheapybuck&quot Kit
+	    </a>
+          </li>
+        </ul>
+      </li> 
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+    (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+June 28, 2014
+<!--#include virtual="footer2.include" -->
+        </address>
+    </body>
+</html>

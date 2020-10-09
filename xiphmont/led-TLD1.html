@@ -1,0 +1,254 @@
+<!--#include virtual="header1.include" -->
+<!--#include virtual="header2.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+     {
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>ThinkPad LED Driver #1</h1>
+<!--#include virtual="header3.include" -->
+<div class="or">
+    for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+  </div>
+</div>
+<div id=topnav>
+  &gt;
+  <a href="led-backlight.html">About</a> |
+  <a href="led-kit.html">LED Kits</a> |
+  <a href="led-kit.html#order">Order</a> |
+  <a href="led-panel.html">Installation</a> |
+  <a href="led-kit.html#FAQ">FAQ</a> |
+  <a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+<a href="led-TLD1-schematic.png">
+  <img class=schematic src="led-TLD1-schematic.png" />
+</a>
+<hr />
+
+<a href="led-TLD1-pcb.png">
+  <img class=rightpic src="led-TLD1-pcb.png" />
+</a>
+<a class=rightlink href="led-TLD1.pcb">gEDA PCB source</a>
+
+<a href="led-TLD1-PCB.jpg">
+  <img class=rightpic src="led-TLD1-PCB.jpg" />
+</a>
+<a class=rightlink href="led-TLD1.zip">Gerber files</a>
+
+<a href="led-TLD1-board.jpg">
+  <img class=rightpic src="led-TLD1-board.jpg" />
+</a>
+<a class=rightlink href="led-TLD1-BOM-335mA.txt">BOM (335mA)</a>
+<a class=rightlink href="led-TLD1-BOM-600mA.txt">BOM (600mA)</a>
+
+<p>ThinkPad LED Driver #1 (TLD1) is a buck-topology LED driver based
+on the <a href="tps92510-2.pdf">Texas Instruments TPS92510</a>
+controller IC.  It provides a single channel of dimmable
+current-regulated output intended for 3S LED strings operating between
+7V to 9.6V and a maximum design output current of 600mA (depending on
+the components chosen) from an unregulated input of 10-24V.</p>
+
+<h2 id=design>Design requirements</h2>
+
+<ul>
+<li>Input power supplied from an unregulated 10V-24V rail with substantial load noise</li>
+<li>Output intended for single-channel '9.6V' LED strips with 3S16P-3S24P topology</li>
+<li>Continuous-current (analog) dimming, not PWM</li>
+<li>Dimmable range capability of &ge;25:1
+<li>Regulation precision better than 1% at any brightness setting</li>
+<li>Maximum dimensions of 46mm x 9.25mm x 4.4mm</li>
+<li>Micropower draw when disabled</li>
+</ul>
+
+
+<p>The primary additional design criteria over existing driver boards
+already available from Chinese vendors are a wide dimming range
+(&ge;25:1), native Thinkpad signaling, and continuous-current
+operation rather than dimming via PWM.</p>
+
+<h2>Design detail</h2>
+
+<p>TLD1 is based on the reference example circuits found in
+the <a href="tps92510-2.pdf">Texas Instruments TPS92510</a> data
+sheet.  The design makes three additions to the examples.</p>
+
+<h3>Passive snubber</h3>
+<p>A snubber resistor (R6) substantially reduces ground-state ringing
+through coil L1 during discontinuous-mode operation.  Although the
+circuit meets regulation precision without, R6 reduces regulation
+error by more than half at low brightness (at the cost of about
+three-quarters of a percent efficiency).</p>
+
+<h3>Offset dimming</h3>
+<p>The PWM dimming input (pin 4 of the TPS92510) is left unused, with
+dimming implemented by offsetting the current sense voltage at pin 7.
+C6 provides an AC-coupled current-sense waveform, with the DC
+component offset by the voltage divider formed by R3 and R5.</p>
+
+<h3>PWM to analog level conversion</h3>
+<p>U3 charges C5 through RA and RB with each negative-phase of the
+input PWM dimming control signal.  The voltage across C5 also presents
+across the voltage divider (R3 and R5) to offset the current sense
+signal at pin 7, dimming the output.  The voltage divider does double
+duty, draining charge from C5 when the PWM waveform is high.  In this
+way, U3, RA, RB, C5, R3 and R5 form a lowpass filter, converting a PWM
+input signal to an analog voltage offset at pin 7.</p>
+
+<h2>Other Notes</h2>
+<h3>Precision/Accuracy</h3>
+
+<p>The TPS92510 data sheet states that driver current accuracy is
++/-3%.  In reality, the accuracy error behaves more like a constant
+current offset.  With trimming, regulation error is better than 1/4%
+across the input and output operating range.</p>
+
+<h3>Trimming</h3>
+
+<p>Resistors RA and RB set the ratio of maximum brightness to minimum
+brightness. The correct values depend on the brightness range of the
+specific ThinkPad, the desired ratio, and the value of R3. The
+inherent current offset of the particular driver IC will also affect
+the minimum brightness by up to 5mA. See the bill of materials for
+starting values.</p>
+
+<p>Sense resistors RC and RD set the output current at full
+brightness.  As per the data sheet, the effective resistance should be
+200mV divided by the desired full-brightness output current.  Note
+that the ratio set by RA and RB is not affected by the values of RC
+and RD, aside from the hard limitation of the configuration's minimum
+possible brightness. </p>
+
+<h3>Static Sensitivity</h3>
+<p>The TPS92510 is one of the most static-sensitive ICs I've worked with.
+It is <em>exceptionally</em> easy to damage the internal sense amplifiers
+when handling the chip.<p>
+
+<p>Static damage usually manifests subtly as a higher-than expected
+minimum brightness, or brightness steps on the minimum of the
+scale proving metastable.  The circuit still works, it just 'acts
+funny'.<p>
+
+<p>Assembled circuits appear to be more normally robust against
+static, likely due to large external capacitances protecting the
+relevant sense inputs.  As yet, I've not had an assembled board suffer
+static damage.</p>
+
+<h3>History</h3>
+<p>TLD1 was originally the first prototype design for a
+LED backlight conversion board for CCFL-equipped ThinkPads. 50
+hand-soldered boards from the prototype run became the first
+generation of X61 LED kits (Original and Daylight). With the
+introduction of TLD3, remaining TLD1 boards will be used in
+'Original' (335mA) X61 kits until the stock is depleted.</p>
+
+<!--#include virtual="toc-parts.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <ul>
+      <li>
+        <a id=toc_TLD1 href="led-TLD1.html">
+	  TLD1 schematics, design notes, and Gerber files
+	</a>
+      </li>
+      <li>
+        <a id=toc_TLD2 href="led-TLD2.html">
+	  TLD2 schematics, design notes, and Gerber files
+	</a>
+      </li>
+      <li>
+        <a id=toc_TLD3 href="led-TLD3.html">
+	  TLD3 schematics, design notes, and Gerber files
+	</a>
+      </li>
+      <li>
+        <a id=toc_strip href="led-strip.html">
+	  LED strip notes and Gerber files
+	</a>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+      </li>
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+    (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+May 2, 2016
+<!--#include virtual="footer2.include" -->
+        </address>
+    </body>
+</html>
