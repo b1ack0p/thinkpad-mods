@@ -1,0 +1,183 @@
+<!--#include virtual="header1.include" -->
+#toc_fancyboost
+<!--#include virtual="header2.include" -->
+<h1>The "Fancyboost" Kit for Thinkpads</h1>
+<!--#include virtual="header3.include" -->
+
+<table class=kit>
+  <tr>
+    <th>fancyboost</th>
+    <th>notes</th>
+    <th>dim range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl>stock (no mod)</td>
+    <td rowspan=2>
+      boost, 30-50V output, fault-sensing<br />
+      8 LED strings minimum for 20V input</td>
+    <td>6:1</td>
+    <td class=tr rowspan=2>$55-70</td>
+  </tr>
+  <tr>
+    <td><a href="#hf">high-frequency PWM mod</a></td>
+    <td>5.5:1</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-fancyboost-large.jpg">
+	<img src="led-fancyboost-large.jpg" /></a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>Comes in kits that allow drop-in replacement of CCFL inverter with no soldering</li>
+	<li class=plus>Best fault protection of any kit; will shut off
+	on any over-range condition rather than blowing a fuse on the
+	Thinkpad.
+	<li class=neutral>Uses low-frequency PWM; requires modification to eliminate flicker</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Several times more expensive than other kits</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>The 'Fancyboost' driver is another Chinese product where the
+  maker has helpfully ground all identifying marks off the top of
+  the controller IC.  No matter; the driver is a boost configuration
+  using the rather nice MP3388 controller
+  IC <a href="MP3388.pdf">[datasheet]</a>. I've only seen the
+  Fancyboost pre-grafted onto inverter boards in specialized kits
+  for specific laptop models, usually replacing the coils under the
+  copper-colored EMI shield. In the pic above, it's been fitted to
+  an X61T inverter board as part of an X60T/X61T kit from
+  xccfl.com.</p>
+
+<p>There's apparently more than one PCB version with very slightly
+  different component layout, but the schematic, component values, and
+  component positions are the same.  Thanks
+  to <a href="http://forum.thinkpads.com/viewtopic.php?f=29&t=114780#p739008">FryPpy
+  on forum.thinkpads.com for the heads-up</a>
+  and <a href="http://s29.postimg.org/ai14yhqwn/P8120253.jpg">picture</a>
+  (<a href="P8120253.jpg">local copy</a>) of the slightly different
+  board.</p>
+
+<div class=caption>
+  <img class=schematic
+       src="led-fancyboost-schematic.png" />
+  <p>Above: Schematic of stock, unmodified &quot;Fancyboost&quot; LED
+  driver board</p>
+</div>
+
+<p>These model-specific kits can be dropped right into a Thinkpad
+  without any modification or soldering. The stock board is set up
+  to use low-frequency PWM for a 6:1 brightness control range. If
+  the low-frequency backlight flicker is annoying, the mod below
+  alters the board to use high-frequency (24kHz) PWM instead,
+  eliminating any hint of flicker but reducing the dimmable range
+  slightly.</p>
+
+<p>BTW, one odd thing to be aware of: Many of the LED strips
+  included with Fancyboost kits have + and - color-coded backwards;
+  the lower - LED lead is red and the upper + lead is black.  I
+  assume this was done to 'match' the CCFL wire harness where the
+  red lead is on the bottom.  LED backlight kits have arbitrary
+  polarity in general, but this is the only one I've seen that
+  color-codes polarity backwards.</p>
+
+<hr />
+<h2 id="hf">Mod: High-frequency PWM</h2>
+
+<p>The MP3388 boost controller IC offers several features of which
+  the Fancyboost board does not take advantage.  The most
+  interesting is the ability to translate a low frequency PWM
+  brightness control input signal into a higher-frequency PWM
+  backlight drive (see "PWM Dimming with Internal Triangle Waveform
+  Generator" on the <a href="MP3388.pdf">datasheet</a>).  That means
+  the chip can accept the 200Hz PWM from the Thinkpad but control
+  the backlight with a higher frequency like 24kHz.</p>
+
+<p>The Fancyboost does not use this feature, instead implementing
+  a weirdly complex low-frequency PWM setup. The good news is that
+  it's easy to mod the Fancyboost to use high-frequency PWM if the
+  low-frequency flicker is annoying.</p>
+
+<div class=caption>
+  <img class=schematic
+       src="led-fancyboost-schematic-hf.png" />
+  <p>Above: Schematic of the Fancyboost driver board modified for
+    high-frequency PWM operation with a Thinkpad.  Oddly, this
+    improvement mostly involves removing components.</p>
+</div>
+
+<h3 class=center>parts needed</h3>
+<ol>
+  <li>10V 150pF capacitor (SMD 0603 recommended)</li>
+  <li>10V .1&micro;F capacitor (SMD 0603 or 0805 recommended)</li>
+  <li>A few centimeters of thin (roughly 30 gauge) wire</li>
+</ol>
+
+<p>Feel free to use either surface mount or through-hole
+  components as convenient. Capacitor tolerance values are not
+  important, and they won't see more than about 5.5V.</p>
+
+<h3 class=center>modification process</h3>
+
+<ol>
+  <li>Replace the 10k&ohm; resistor (marked 103) indicated in the
+    image below with a 150pF ceramic capacitor.</li>
+  <li>Remove all the highlighted components marked 'step 2'.</li>
+</ol>
+
+<div class=caption>
+  <a href="led-fancyboost-hf1-large.jpg">
+    <img src="led-fancyboost-hf1-large.jpg" /></a>
+  <p>Above: Highlighted components to be removed in step 1 and 2 of
+  the HF PWM mod.  Click to enlarge.</p>
+</div>
+
+<ol start=3>
+  <li>Solder a .1&micro;F (104) ceramic cap into the position
+    indicated in the picture below.  The left side of the capacitor
+    reuses the right-hand pad from a removed 100k&ohm; (104)
+    resistor, and the right side is soldered to the lower lead of
+    the large ceramic output capacitor.</li>
+  <li>Solder a wire from the controller IC pin 6 (or the exposed
+    copper pad slightly below and to the right of the pin) to the
+    lowermost unused solder pad just ot the left of the output
+    connector.  This was the lower pad of another removed 100k&ohm; (104)
+    resistor; consult the image below if there's any confusion.</li>
+</ol>
+
+<div class=caption>
+  <a href="led-fancyboost-hf2-large.jpg">
+    <img src="led-fancyboost-hf2-large.jpg" /></a>
+  <p>Above: Placement of the capacitor added in step 3, and the
+    wire added in step 4. Click to enlarge.</p>
+</div>
+
+<p>Through-hole components also work perfectly well, though some
+  care must be taken not to lift the copper pads off the driver
+  PCB. If you do use through-hole components, it's a good idea to
+  glue them securely into place with a blob of CA glue after
+  testing.</p>
+
+<div class=caption>
+  <a href="led-fancyboost-hf3-large.jpg">
+    <img src="led-fancyboost-hf3-large.jpg" /></a>
+  <p>Above: The capacitors added in step 1 and step 3 can be
+    through-hole varieties. It's harder to be neat, but neatness is
+    not really required. Giant solder blobs are optional :-)</p>
+</div>
+
+<p>And with that, the backlight switching frequency is increased
+  to approximately 24kHz and the board is ready for use.  Note that the
+  brightness adjustment range is reduced slightly; we lose about
+  half a 'step' at the top and bottom of the range.</p>
+
+<!--#include virtual="toc-chinese.include" -->
+<!--#include virtual="footer1.include" -->
+June 21, 2014
+<!--#include virtual="footer2.include" -->

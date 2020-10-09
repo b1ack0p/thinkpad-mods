@@ -1,0 +1,216 @@
+<!--#include virtual="header1.include" -->
+#toc_TLD3
+<!--#include virtual="header2.include" -->
+<h1>ThinkPad LED Driver #3</h1>
+<!--#include virtual="header3.include" -->
+
+<a href="led-TLD3-schematic.png">
+  <img class=schematic src="led-TLD3-schematic.png" />
+</a>
+<hr />
+
+<a href="led-TLD3-pcb.png">
+  <img class=rightpic src="led-TLD3-pcb.png" />
+</a>
+<a class=rightlink href="led-TLD3.pcb">gEDA PCB source</a>
+
+<a href="led-TLD3-PCB.jpg">
+  <img class=rightpic src="led-TLD3-PCB.jpg" />
+</a>
+<a class=rightlink href="led-TLD3.zip">Gerber files</a>
+
+<a href="led-TLD3-board.jpg">
+  <img class=rightpic src="led-TLD3-board.jpg" />
+</a>
+<a class=rightlink href="led-TLD3-BOM.txt">BOM</a>
+
+<p>ThinkPad LED Driver #3 (TLD3) is a slight refinement of
+layout <a href="led-TLD1.shtml">TLD1</a>, replacing the brightness
+range trim and shaping resistors with two multiturn cermet
+potentiometers.  They allow trimming a TLD3 board for any model
+without soldering.</p>
+
+<p>Like TLD1, the TLD3 is a buck-topology LED driver based on
+the <a href="tps92510-2.pdf">Texas Instruments TPS92510</a> controller
+IC.  It provides a single channel of dimmable current-regulated output
+intended for 3S LED strings operating between 7V to 9.6V and a design
+output current of 600mA from an unregulated input of 10-24V.<p>
+
+<h2>Brightness step and range adjustment</h2>
+
+<p>As mentioned in the <a href="led-kit.shtml#FAQ">FAQ</a>, CCFL
+ThinkPads all use the same brightness control system, but different
+ThinkPads use different brightness ranges and step spacing designed to
+work with specific CCFL lamps. LEDs behave differently, and the LED
+driver boards must be 'trimmed' for the best behavior with a given
+model's brightness range. </p>
+
+<p>The TLD3 board includes two potentiometers that allow it to be
+trimmed for any model, or adjusted by the user to suit their own
+preferences.</p>
+
+<p>Both potentiometers are multiturn cermets with a full adjustment
+range of 11 turns.  When adjusted past either end of the range, the
+potentiometer wiper 'idles' and up to a full turn in the opposite
+direction is required before the wiper starts moving again.</p>
+
+<div class=caption>
+  <a href="led-TLD3-adjust.jpg">
+    <img src="led-TLD3-adjust.jpg" />
+  </a>
+  <p>Above: Two potentiometers on the TLD3 adjust the shape of the brightness step spacing and the minimum brightness setting.</p>
+</div>
+
+<h3>Left potentiometer: linear / exponential step spacing</h3>
+
+<p>The left-hand potentiometer adjusts step spacing toward a more
+exponential step spacing in the clockwise direction, and toward a more
+linear spacing in the counter-clockwise direction.  Linear
+spacing makes brighter steps feel closer together and dimmer steps
+feel farther apart.  Exponential spacing does the opposite, making
+brighter steps feel farther apart and dimmer steps closer
+together.</p>
+
+<p>Starting from a full-counterclockwise position, the first turn or
+so (once the adjustment starts moving) is not in the useful adjustment
+range.  Until adjustment has reached the first full turn, low
+brightness steps will flicker slightly as the lowpass filter that
+converts the ThinkPad's PWM brightness signal to a smooth analog level
+is not yet fully functioning.</p>
+
+<h3>Right potentiometer: minimum brightness setting</h3>
+
+<p>The right potentiometer adjusts TLD3's output at the ThinkPad's
+minimum brightness setting. Clockwise increases the minimum brightness
+output, and counter-clockwise decreases it. Note the the TLD3 has an
+inherent minimum output of about 7-10mA.  Attemting to adjust below
+this level has no affect on the minimum brightness setting, and will
+also decrease the brightness level of steps above minimum.</p>
+
+<h3>Default setting: X41, X61T</h3>
+
+<p>This adjustment process restores a default X41 adjustment.</p>
+
+<p>If an ammeter is available, place it inline with one leg or the
+other of the LED strip.</p>
+
+<ol>
+<li>Set the Thinkpad to one step below maximum brightness</li>
+<li>Adjust the left (step spacing) potentiometer so that the ammeter
+reads 400mA</li>
+<li>Set the ThinkPad to the lowest brightness step</li>
+<li>Adjust the right (min brightness) potentiometer such that output
+reads 30mA</li>
+<li> Each adjustment slightly affects the other, so repeat steps 1-4
+until the adjustments don't move (one to two more times)</li>
+</ol>
+
+<p>Rough adjustment is still possible if an ammeter is not available:
+<ol><li>Turn the both potentiometers counterclockwise 13 turns, thus
+making sure they're idling at the full counterclockwise adjustment</li>
+<li>Turn the left (step spacing) potentiometer back clockwise 4 turns</li>
+<li>Set the ThinkPad to minimum brightness</li>
+<li>Turn the right (min brightness) potentiometer clockwise until the exact point it begins to raise the brightness</li>
+<li>Continue turning the same (right) potentiometer clockwise 1 and 1/2 more turns</li>
+</ol>
+
+<h3>Default setting: X60, X60s, X60T (updated 2016/12/05)</h3>
+
+<p>This adjustment process restores a default X60 adjustment.</p>
+
+<p>Note: An X60, X60s or X60T machine using Coreboot or Libreboot
+  behaves more like an X61 where backlight adjustment is concerned.
+  Windows 10 will also set a n X61-like brightness stepping. The
+  adjustment outlined here will work either way.</p>
+
+<p>If an ammeter is available, place it inline with one leg or the
+other of the LED strip.</p>
+
+<ol>
+<li>Set the Thinkpad to one step below maximum brightness</li>
+<li>Adjust the left (step spacing) potentiometer so that the ammeter
+reads 345mA</li>
+<li>Set the ThinkPad to the lowest brightness step</li>
+<li>Adjust the right (min brightness) potentiometer such that output
+reads 48mA</li>
+<li> Each adjustment slightly affects the other, so repeat steps 1-4
+until the adjustments don't move (one to two more times)</li>
+</ol>
+
+<p>Rough adjustment is still possible if an ammeter is not available:
+<ol><li>Turn the both potentiometers counterclockwise 13 turns, thus
+making sure they're idling at the full counterclockwise adjustment</li>
+<li>Turn the left (step spacing) potentiometer back seven turns</li>
+<li>Set the ThinkPad to minimum brightness</li>
+<li>Turn the right (min brightness) potentiometer clockwise until the exact point it begins to raise the brightness</li>
+<li>Continue turning the same (right) potentiometer clockwise for 1 and 7/8 more of a turn</li>
+</ol>
+
+<h3>Default setting: X61, X61s, X61T</h3>
+ 
+<p>This adjustment process restores a default X61 adjustment.</p>
+<p>If an ammeter is available, place it inline with one leg or the
+other of the LED strip.</p>
+
+<ol>
+<li>Set the Thinkpad to one step below maximum brightness</li>
+<li>Adjust the left (step spacing) potentiometer so that the ammeter
+reads 500mA</li>
+<li>Set the ThinkPad to the lowest brightness step</li>
+<li>Adjust the right (min brightness) potentiometer such that output
+reads 24mA</li>
+<li> Each adjustment slightly affects the other, so repeat steps 1-4
+until the adjustments don't move (one to two more times)</li>
+</ol>
+
+<p>Rough adjustment is still possible if an ammeter is not available:
+<ol><li>Turn the both potentiometers counterclockwise 13 turns, thus
+making sure they're idling at the full counterclockwise adjustment</li>
+<li>Turn the left (step spacing) potentiometer back clockwise 10 turns</li>
+<li>Set the ThinkPad to minimum brightness</li>
+<li>Turn the right (min brightness) potentiometer clockwise until the exact point it begins to raise the brightness</li>
+<li>Continue turning the same (right) potentiometer clockwise for 1/2 more of a turn</li>
+</ol>
+
+<h2>Design Notes</h2>
+<p>In addition to the below, <a href="led-TLD1.shtml#design">design
+requirements and notes from TLD1</a> still apply.</p>
+
+<h3>Potentiometers and component choices</h3>
+
+<p>The adjustable range of TLD3 required revision of capacitance
+values in the PWM-to-analog lowpass, as well as co-opting the current
+sense decoupling capacitor C6 into being a more active part of the
+filter.  This was to even out the time-constant behavior of the
+lowpass across the adjustment range such that the lowpass would smooth
+adequately without overly damping brightness changes.</p>
+
+<p>For good measure, I also reduced current flow within the dimming
+circuit, as the current flows across both wipers of both
+potentiometers.</p>
+
+<h3>Vertical component placement</h3>
+
+<p>All passives on the TLD3 board are now oriented vertically in an
+attempt to reduce their exposure to board flex during installation and
+handling.</p>
+
+<h3>Powdered-iron inductor</h3>
+
+<p>Although TLD3 runs at 350kHz, I was surprised to find in testing
+that several molded powdered-iron core inductors performed as well as
+the ferrite inductors I'd been using in TLD1 and TLD2.  The inductors
+also had significantly higher current and saturation ratings, and were
+more physically robust.</p>
+
+<h2>Other Notes</h2>
+<h3>History</h3>
+<p>TLD3 is a revision of the original TLD1 prototype taking into
+account several minor refinements.  As of May 2016, TLD3 replaces the
+use of TLD1 and TLD2 in Daylight (600mA) kits for all Thinkpad
+models.</p>
+
+<!--#include virtual="toc-parts.include" -->
+<!--#include virtual="footer1.include" -->
+July 14, 2016
+<!--#include virtual="footer2.include" -->

@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="https://people.xiph.org/~xiphmont/M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+      
+        <img src="https://people.xiph.org/~xiphmont/M.png" alt="M"/>
+      <h1>Modding the "Unboosty" Kit for Thinkpads</h1>
+      <div class="or">
+        the X60, X60s, X60t, X61t, X61s, and X61t in particular
+      </div>
+      <hr style="clear: none;"/>
+    </div>
+
+    <table style="width:800px;">
+      <tr>
+        <th>unboosty</th>
+        <th>notes</th>
+        <th>dim range</th>
+        <th>~cost</th>
+      </tr>
+      <tr>
+        <td><a href="#pwm">PWM-mode mod</a></td>
+        <td rowspan=2>
+          buck-down, 8-12V output (3 LED segments, 9.6V nominal)</td>
+        <td>8:1</td>
+        <td rowspan=2>$15-20</td>
+      </tr>
+      <tr>
+        <td><a href="#cont">continuous-drive mod</a></td>
+        <td>20:1</td>
+      </tr>
+      <tr>
+	<th colspan=4>
+	  <a href="led-unboosty-large.jpg"><img src="led-unboosty.jpg" /></a>
+	</th>
+      </tr>
+    </table>
+
+    <p>This kit is based on the same DF6113 boost controller
+      IC <a href="DF6113.pdf">[datasheet]</a> as
+      the <a href="led-simpleboost.shtml">"Simpleboost" kit</a>, but
+      arranged to use the inductor control as a low-side buck-down
+      converter(!)  The driver board expects to drive a
+      constant-current LED string at between 8 and 12 volts such as
+      the usual 9.6V constant-current strips that can be trimmed in
+      groups of three LEDs. This board requires one of the below
+      modifications to work properly with a Thinkpad.</p>
+
+    <p><b><span style="color: red;">WARNING:</span> the kits I tested
+      came with driver boards configured to put out over an amp
+      despite including 12.1&quot;/255mm strips rated for a maximum
+      continuous operating current of 320mA. Operating these strips at
+      an amp will damage them quickly. If you want to test your kit
+      and strips before modding, either tie the DIM input to
+      a 3.5V-5V source or replace the current sense resistors
+      first!</b></p>
+
+    <div class=caption>
+      <img src="led-unboosty-schematic.png" style="width: 800px"/>
+      <p>Above: Schematic of stock, unmodified &quot;Unboosty&quot; LED driver board</p>
+    </div>
+
+    <hr>
+    <h2 id="pwm">Mod One: PWM-mode</h2>
+
+    <p>The PWM mod is the simpler of the two mods for this kit. It
+      alters the driver board to use the Thinkpad's PWM brightness
+      signal as a direct backlight switching control. The PWM
+      frequency is 60Hz unless the OS changes it. If backlight flicker
+      bothers you, definitely use the continuous-drive mod
+      instead.</p>
+
+    <div class=caption>
+      <img style="width: 800px;"
+	   src="led-unboosty-schematic-pwm-over.png" />
+      <p>Above: Schematic of the Unboosty driver board modified for
+	PWM-mode operation with a Thinkpad.  Red marks new or altered
+	components and connections, light gray shows removed
+	connections and components.</p>
+    </div>
+
+    <p>Feel free to use either surface mount or through-hole
+      components as convenient. Resistor values should be 1%
+      tolerance for best results.</p>
+
+    <ol>
+      <li>Remove C5 completely.</li>
+
+      <li>Remove R3 completely.</li>
+
+      <li>Replace the current sense resistors R4 and R7 with 2.2&ohm;
+      and 3.0&ohm; values. Alternately, a single 1.3&ohm; resistor is
+      a close substitution, but gives slightly lower output.</li>
+
+      <li>Solder the cathode of a 1N4148 diode to the left hand pad of
+      the former R3; solder the anode to the lower exposed pad of the
+      former C5.</li>
+    </ol>
+
+    <div class=caption>
+      <a href="led-unboosty-pwm-untrimmed-large.jpg"><img src="led-unboosty-pwm-untrimmed.jpg" /></a>
+      <p>Above: LED driver board after PWM mod.  Changes
+      from stock are circled in red.</p>
+    </div>
+
+    <p>After modding, the DIM input is now the board enable and the
+      ENA input is now a PWM-compatible brightness input (they're
+      mostly interchangeable really, but this arrangement is slightly
+      preferable). The board will put out approximately 320mA at max
+      brightness. Minimum brightness depends somewhat on PWM
+      frequency; the PWM signal switches the chip enable and the
+      converter has some turn-on lag.  At the BIOS default of 60Hz,
+      min brightness is about 40mA average for an adjustment range of
+      8:1.</p>
+
+    <p>If there's no space to stash the LED driver PCB somewhere in
+      the lid (or if you simply find adding the extra board
+      inelegant), the driver PCB can be cut down to fit directly
+      onto a stock Thinkpad inverter board. The circuit is the same as
+      above, but we need to relocate some components.</p>
+    <ol>
+      <li>Begin by cutting along the indicated
+	lines; diagonal cutters will make a clean, easy cut.</li>
+    </ol>
+
+    <div class=caption>
+      <a href="led-unboosty-cut-large.jpg"><img src="led-unboosty-cut.jpg" /></a>
+      <p>Above: The full LED driver is too large to graft onto an
+      existing Thinkpad inverter. Cut the PCB board at the dotted
+      lines using diagonal cutters to make it small enough to
+      fit. Some of the components on the cut-off sections will need to
+      be relocated onto the remaining PCB.</p>
+    </div>    
+
+    <p>The large orange 1&micro;F tantalum input capacitor (C6), the
+      10&micro;F ceramic output filter capacitor (C7), and 10&ohm;
+      input decoupling resistor (R1) that were cut off must all be
+      added back onto the remaining board section.  Keep in mind the
+      the tantalum capacitor is polarized!</p>
+
+    <ol start=2>
+      <li>Relocate output filter cap C7 to the remaining section of
+      the board.  It should fit nicely between L1 and D1, if not, move
+      L1 a bit to the left. C7 is non-polarized; solder one side to the
+      upper pad of L1 and the other to the lower pad of D1 using
+      additional leads.</li>
+      <li>Relocate the tantalum input cap C6 to the remaining section
+      of board; it will fit in the space to the left of Q1.  In the
+      picture below it's mounted upside down for convenience. Use
+      additional leads to solder the + side to the lower pad of D1
+      (and the relocated C7) and the - side of the cap to ground, (e.g.
+      the lower pad of R4).</li>
+      <li>Rather than reusing R1, solder a through-hole resistor from
+      IC pin 1 to the + side of the relocated tantalum capacitor
+      C6. Any value between 10&ohm; and 200&ohm; is fine. The schematic
+      indicates 10&ohm;, I actually used 100&ohm; in the pictures.</li>
+      <li>Solder one lead of a 4.7k&ohm; resistor to pin 4 of the IC; the
+      other lead becomes our DIM input.</li>
+      <li>Solder the anode of a 1N4148 diode to pin 4 of the IC as
+      well.  The cathode becomes our ENA input.</li>
+      <li>Make a solder pad for the LED- connection by scraping the
+      conformal covering off the trace right under the 'D1' printing,
+      and tinning the exposed copper.</li>
+    </ol>
+
+    <p>Once the assembly tests OK, it's a good idea to fix the added
+      components into place with a generous amount of cyanoacrylate
+      glue to prevent the exposed leads from shifting
+      unintentionally. Then the trimmed driver PCB is ready to
+      be <a href="led-inverter.shtml#graft">grafted onto an existing
+      Thinkpad backlight inverter</a>. </p>
+
+
+    <div class=caption>
+      <a href="led-unboosty-pwm-trimmed-large.jpg">
+	<img src="led-unboosty-pwm-trimmed.jpg" 
+	     onmouseover="this.src='led-unboosty-pwm-trimmed-over.jpg'"
+	     onmouseout="this.src='led-unboosty-pwm-trimmed.jpg'"/></a>
+      <p>Above: Trimmed LED driver board with completed PWM mod
+      intended to be soldered onto a Thinkpad inverter.  Mouse over
+      the image to highlight and label the connection points.</p>
+    </div>
+
+
+    <hr>
+    <h2 id="cont">Mod Two: Continuous-drive</h2>
+
+    <p>The Unboosty continuous-drive mod is more complex than the
+    PWM-mode mod (perhaps approaching the line where it might just be
+    less trouble to construct a fresh PCB design), but the result is
+    flicker free, higher efficiency, and also has a much wider
+    brightness adjustment range.</p>
+
+    <div class=caption>
+      <img style="width: 800px;"
+	   src="led-unboosty-schematic-continuous-over.png" />
+      <p>Above: Schematic of the Unboosty driver board modified for
+      continuous-drive operation with a Thinkpad.  Red marks new or
+      altered components and connections, light gray shows removed
+      connections and components.</p>
+    </div>
+
+    <p>Modding the Unboosty board for Thinkpad-compatible continuous
+    drive requires swapping three resistor values and adding five new
+    components (R3 is removed and replaced with another resistor
+    elsewhere on the board, but in the same position on the
+    schematic).  Again, mix through-hole and surface mount as
+    convenient and use 1% tolerance resistors for the best
+    results. Starting with a whole board modification as before:</p>
+
+    <ol>
+      <li>Remove C5 completely.</li>
+      <li>Remove R3 completely.</li>
+      <li>Replace the current sense resistors R4 and R7 with
+      values 1.8&ohm; and 3.9&ohm;.</li>
+      <li>Replace resistor R6 with value 12k&ohm;.</li>
+      <li>Solder one lead/pad of a 330k&ohm; resistor to pin 6 of the DF6113.</li>
+      <li>Solder one lead/pad of a .1&micro;F capacitor (25V minimum) to pin 7 of the DF6113.</li>
+      <li>Solder together the unattached leads/pads of the resistor from step 5 and
+	the capacitor from step 6.</li>
+    </ol>
+
+    <div class=caption>
+      <a href="led-unboosty-continuous1-large.jpg"><img src="led-unboosty-continuous1.jpg" /></a>
+      <p>Above: Unboosty driver board after steps 1-7 of the
+	continuous-mode mod. Changes from stock are circled in red.  The
+	two surface mount components soldered to pins 6 and 7 of the
+	driver IC are soldered together on the right side; the diode
+	cathode will also be soldered to this connection in step 10.</p>
+    </div>
+
+    <p>If you're using surface mount components in steps 5 through 7
+    (as in the picture above) be careful; SMDs are designed to be
+    soldered to pads on the PCB, not to each other, and some have lead
+    connections that are easy to crack or pry off by accident.  For
+    example, you might be tempted to solder the 330k&ohm; resistor
+    from step 5 between R6 and the .1&micro;F capacitor attached to
+    pin 7.  Chaining SMD components together this way is likely to
+    fracture internal connections on the components if the chain is
+    disturbed or flexed (including during assembly).  A broken
+    connection here would result in a circuit that may seem to work,
+    but not entirely correctly.</p>
+
+    <p>Continuing with the modification:</p>
+
+    <ol start=8>
+      <li>Solder the source of an N-channel FET (such as a 2N7000 or
+	ZVN2106A) to the ground (lower) pad of R5.</li>
+      <li>Solder the drain of the N-channel FET to the anode of a 1N4148.</li>
+      <li>Solder the cathode of the 1N4148 to the connection of the resistor and capacitor made in step 7.</li>
+      <li>Solder a wire from the gate of the N-channel FET and the
+	left hand pad of the former R3.</li>
+    </ol>
+
+    <div class=caption>
+      <a href="led-unboosty-continuous2-large.jpg"><img src="led-unboosty-continuous2.jpg" /></a>
+      <p>Above: Completed continuous-mode Unboosty mod showing the
+      resistor, diode and transistor added in steps 8-11.</p>
+    </div>
+
+    <p>After modding, the DIM input converts the Thinkpad PWM input to
+      an analog continuous-drive adjustment.  The board will put out
+      approximately 320mA at max brightness and 15mA at minimum
+      brightness for an adjustment range of a little over 20:1.  The
+      adjustment steps are spaced non-linearly with larger steps at
+      high brightness.</p>
+
+    <p>As with the PWM mod, we can also construct a cut-down version of
+      the continuous-mode driver that will fit onto an existing
+      Thinkpad inverter board. Again the circuit is the same but we
+      need to relocate some components.</p>
+
+    <p>The mod begins the same as before, but we don't need to remove
+      R3 or C5 as they'll be cut off later anyway.  The steps are
+      mostly the same, but for the sake of keeping everything clear,
+      let's restart the mod from the beginning:</p>
+
+    <ol>
+      <li>Replace the current sense resistors R4 and R7 with
+      values 1.8&ohm; and 3.9&ohm;.</li>
+      <li>Replace resistor R6 with value 12k&ohm;.</li>
+      <li>Solder one lead/pad of a 330k&ohm; resistor to pin 6 of the DF6113.</li>
+      <li>Solder one lead/pad of a .1&micro;F capacitor (25V minimum) to pin 7 of the DF6113.</li>
+      <li>Solder together the unattached leads/pads of the resistor from step 5 and
+	the capacitor from step 6.</li>
+    </ol>
+
+    <div class=caption>
+      <a href="led-unboosty-continuous1-trimmed-large.jpg"><img src="led-unboosty-continuous1-trimmed.jpg" /></a>
+      <p>Above: Unboosty driver board after steps 1-5 of the
+	continuous-mode mod for a cut-down board. Changes from stock
+	are circled in red.  The two surface mount components soldered
+	to pins 6 and 7 of the driver IC are soldered together on the
+	right side; the diode cathode will also be soldered to this
+	connection in step 8.</p>
+    </div>
+
+    <p>Continue adding components:</p>
+
+    <ol start=6>
+      <li>Solder the source of an N-channel FET (such as a 2N7000 or
+	ZVN2106A) to the ground (lower) pad of R5.</li>
+      <li>Solder the drain of the N-channel FET to the anode of a 1N4148.</li>
+      <li>Solder the cathode of the 1N4148 to the connection of the resistor and capacitor made in step 5.</li>
+    </ol>
+
+    <p>The large orange 1&micro;F tantalum input capacitor (C6), the
+      10&micro;F ceramic output filter capacitor (C7), and 10&ohm;
+      input decoupling resistor (R1) all must be relocated off the
+      parts of the board that will be cut away. Keep in mind the the tantalum capacitor is
+      polarized!</p>
+
+    <ol start=9>
+      <li>Relocate output filter cap C7 to between L1 and D1. If it
+	does not fit, move L1 a bit to the left. C7 is non-polarized;
+	solder one side to the upper pad of L1 and the other to the
+	lower pad of D1 using additional leads.</li>
+      
+      <li>Relocate the tantalum input cap C6 to the space between Q1
+	and L1.  In the picture it's mounted upside down for
+	convenience. Use additional leads to solder the + side to the
+	lower pad of D1 (and the relocated C7) and the - side of the cap
+	to ground, (e.g. the lower pad of R4).</li>
+
+      <li>Solder one lead of a 220k&ohm; resistor to the + side of the
+	tantalum cap (the relocated C6 from the previous step). Solder
+	the other lead to the drain of the MOSFET, a connection shared
+	with the anode of the 1N4148 diode.</li>
+
+      <li>Rather than reusing R1, solder a through-hole resistor from
+	IC pin 1 to the + side of the relocated tantalum capacitor C6
+	(or, as in the picture, to the lead of the 220k&ohm; resistor
+	that already connects to the capacitor's + terminal). Any value
+	between 10&ohm; and 200&ohm; is fine. The schematic indicates
+	10&ohm;, I actually used 100&ohm; in the pictures.</li>
+    </ol>
+
+    <div class=caption>
+      <a href="led-unboosty-continuous2-trimmed-large.jpg"><img src="led-unboosty-continuous2-trimmed.jpg" /></a>
+      <p>Above: Completed continuous-drive mod immediately before
+      cutting the driver PCB along the dotted lines.</p>
+    </div>
+
+    <p>And finally:</p>
+
+    <ol start=13>
+      <li>Cut the driver PCB along the dotted lines in the image above.</li>
+      <li>Make a solder pad for the LED- connection by scraping the
+      conformal covering off the trace right under the 'D1' printing,
+      and tinning the exposed copper.</li>
+    </ol>
+
+    <div class=caption>
+      <a href="led-unboosty-continuous3-trimmed-large.jpg">
+	<img  src="led-unboosty-continuous3-trimmed.jpg" 
+	      onmouseover="this.src='led-unboosty-continuous3-trimmed-over.jpg'"
+	      onmouseout="this.src='led-unboosty-continuous3-trimmed.jpg'"/></a>
+      <p>Above: Trimmed LED driver board with completed
+      continuous-drive mod intended to be soldered onto a Thinkpad
+      inverter.  Mouse over the image to highlight and label the
+      connection points.</p>
+
+    </div>
+
+    <p>Each input/output to be connected to the preexisting inverter
+    is indicated on the above image upon mouseover. Once the assembly
+    tests OK, it's a good idea to fix the added components into place
+    with a generous amount of cyanoacrylate glue to prevent the
+    exposed leads from shifting unintentionally. Then the trimmed
+    continuous-drive board is ready to
+    be <a href="led-inverter.shtml#graft">grafted onto an existing
+    Thinkpad backlight inverter</a>.</p>
+
+    <hr />
+
+    <h2>[More]</h2>
+    <ul>
+      <li>
+	<b><a href="led-backlight.shtml">LED Backlight Kits for Thinkpads</a></b><br />
+	<div style="margin: 0 0 1em 5em;">
+	  LED backlight kits made or modifiable for Thinkpads and
+	  background information about converting to an LED
+	  backlight
+	</div>
+      </li>
+      <li>
+	<b><a href="led-inverter.shtml">Connecting an LED Backlight to a Thinkpad</a></b><br />
+	<div style="margin: 0 0 1em 5em;">
+	  How to connect LED backlight drivers to the Thinkpad
+	  backlight control electronics and building LED drivers onto existing
+	  Thinkpad inverter boards
+	</div>
+      </li>
+      <li><b><a href="led-panel.shtml">Backlight LEDs &rarr; Thinkpad LCD Panel</a></b><br />
+	<div style="margin: 0 0 1em 5em;">
+	  How to remove an existing CCFL tube, modding the panel for easy
+	  backlight installation and removal, fitting and
+	  positioning the LED strip for secure installation
+	</div>
+      </li>
+    </ul>
+
+    <address style="clear: both;">&mdash;Monty
+      (<a href="mailto:monty@xiph.org">monty@xiph.org)</a> June 21, 2014
+    </address>
+
+  </body>
+</html>
+

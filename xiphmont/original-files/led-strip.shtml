@@ -1,0 +1,62 @@
+<!--#include virtual="header1.include" -->
+#toc_strip
+<!--#include virtual="header2.include" -->
+<h1>ThinkPad Daylight LED Strip #1 and #2</h1>
+<!--#include virtual="header3.include" -->
+
+<a href="led-strip-schematic.png">
+  <img class=schematic src="led-strip-schematic.png" />
+</a>
+<hr />
+
+<a href="led-strip-pcb.png">
+  <img class=rightpic src="led-strip-pcb.png" />
+</a>
+<a class=rightlink href="led-strip.pcb">gEDA PCB source (v1)</a>
+<a class=rightlink href="led-strip2.pcb">gEDA PCB source (v2)</a>
+
+<a href="led-strip-PCB.jpg">
+  <img class=rightpic src="led-strip-PCB.jpg" />
+</a>
+<a class=rightlink href="led-strip.zip">Gerber files (v1)</a>
+<a class=rightlink href="led-strip2.zip">Gerber files (v2)</a>
+
+<a href="led-strip-board.jpg">
+  <img class=rightpic src="led-strip-board.jpg" />
+</a>
+<a class=rightlink href="led-strip-BOM.txt">BOM</a>
+
+<p>LED strips v1 and v2 are custom layouts designed specifically for
+the Nicha 157 package. Both versions place the LEDs so close as to be
+only a few thousandths of an inch from touching; in practice, many of
+the LEDs do in fact touch after reflow.</p>
+
+<p>The specific <a href="NSSW157F-HG-E.pdf">NSSW157F-HG</a> LEDs in
+use have exposed electrical test points on all four sides; this proved
+to be a significant liability when making v1 strips, as any solder
+that got between the LEDs during reflow could cause a short between
+groups of threes.  The v2 strips reverse every other group such that
+any adjacent test points share the same electrical node.</p>
+
+<p>When viewed before installation, the light output of a v2 strip
+appears to have an almost pseudo-random pattern with slighty dimmer
+and slightly brighter spots; this is an illusion caused by the
+reversed groups.  Interestingly, the altered light pattern also
+appears to help break up and further mitigate any remaining rippling
+and shadowing on SXGA screens.</p>
+
+<p>v2 strips also very slightly reduce the spacing between LEDs,
+resulting in a lit-area that is about 2mm shorter on a 4:3 12.1&quot;
+screen.  This eliminates the 'bright corners' often
+seen on SXGA screens when an LED is too close to the left or right
+waveguide edge.</p>
+
+<p>Note that on v1 strips, the outer solder point is LED- and the
+inner point is LED+.  This is reversed on v2 strips in order to better
+accomodate CCFL-style solder tails with thicker insulation on the LED+
+lead.</p>
+
+<!--#include virtual="toc-parts.include" -->
+<!--#include virtual="footer1.include" -->
+May 5, 2016
+<!--#include virtual="footer2.include" -->

@@ -1,0 +1,211 @@
+<!--#include virtual="header1.include" -->
+#toc_backlight
+<!--#include virtual="header2.include" -->
+<h1>Converting ThinkPads to LED Backlighting</h1>
+<!--#include virtual="header3.include" -->
+
+<a href="led-rightpic3.jpg">
+  <img class=rightpic src="led-rightpic3.jpg" />
+</a>
+
+<p>The CCFL tubes used in LCD backlights dim, shift color, and
+  eventually go out as they age. CCFL-equipped laptops more than a few
+  years old usually need or can benefit from a new backlight.</p>
+
+<p>Most recent laptops use LED backlights instead of CCFL tubes.  LEDs
+  are now more power efficient and typically last longer. They're also
+  easier to install in older CCFL-equipped LCD panels than a new
+  CCFL.</p>
+
+<p><a href="led-kit.shtml">I make and sell kits and individual
+  parts</a> for converting several ThinkPad models to LED backlight.
+  My kits are designed specifically for ThinkPads; they plug in with
+  no soldering, use the original brightness controls, offer a wide
+  brightness range with no flickering, and improved color rendering
+  over the original CCFL backlight.</p>
+
+<p><a href="led-panel.shtml">Installation is straightforward though
+  there's some DIY involved</a>.  You'll need to open up the lid,
+  remove the screen and inverter board, extract the CCFL tube from the
+  screen, install the new LED strip and driver board, and get
+  everything back together.</p>
+
+<p class=aside>(If you're looking for my older pages on modding and
+  using LED kits from Chinese vendors, <a href="led-chinese.shtml">
+  I've kept them around for historical purposes</a>.  There are
+  probably still useful bits in there for other modders. That said, I
+  started making my own LED conversions because I wasn't particularly
+  satisfied with the performance of any of the Chinese kits.)</p>
+
+<hr />
+
+<h1 style="padding-left: 0px;
+           padding-right: 0px;
+           padding-top: 1em;
+           padding-bottom: .1em;">
+ <span>
+  A Little More Background
+ </span>
+ <br/>
+  <span style="font-size:.6em;">
+    plus a general LED backlight conversion FAQ
+  </span>
+  
+ <br style="margin-bottom: .2em"/>
+  <span style="font-size:.55em; font-weight: normal;">
+    You probably want to read at least some of this before buying a kit and tearing
+    open your ThinkPad
+  </span>
+</h1>
+<hr />
+
+<h2>This process is not foolproof</h2>
+
+<p>This is the obvious disclaimer; the information presented here
+  is correct to the best of my knowledge, but naturally, you're
+  proceeding at your own risk.  There are plenty of easy mistakes
+  that will kill the kit, the LCD panel, or the computer
+  itself. Even if you know what you're doing, there's the chance a
+  moment's inattention will permanently damage the machine.</p>
+
+<h2>Expected LED life</h2>
+
+<p>I measured the 3.5 year old backlight in my X61T against a brand
+  new panel; it was down to only 22% of its original maximum
+  brightness!  LEDs <em>should</em> last considerably longer-- I guess
+  we'll find out in a few years if that's actually true. Panels
+  designed for CCFLs don't dissipate heat efficiently, and heat is the
+  primary enemy of an LED's longevity.</p>
+
+<h2>Power efficiency</h2>
+
+<p>The various LED backlights I've tested have been anywhere from 140%
+  to 500% the brightness of brand new CCFL at 3W of output power.  LED
+  driver boards are also more efficient than a CCFL inverter; at a 3W
+  output drive, the total draw of a CCFL+inverter is about 4.2W.  An
+  LED backlight+driver typically draws only about 3.5W to deliver the
+  same 3W of useful output power. My new boards knock another 1/4 watt
+  off this figure.</p>
+
+<p>At minimum brightness, a CCFL+inverter draws 1/7th the power but
+  produces only 1/25th the light.  Unlike a CCFL, LED efficiency
+  increases at low brightness, so power savings over a CCFL further
+  increases as you turn down the brightness.</p>
+
+<h2>Dimmable range</h2>
+
+<p>ThinkPads control brightness by varying the duty cycle of a 200 Hz
+  pulse-width modulation (PWM) signal over a range of about 6:1.  This
+  produces a 25:1 actual change in brightness with a new CCFL.  LED
+  brightness is fairly linear, so most kits only provide a brightness
+  range somewhere between 5:1 and 8:1.</p>
+
+<p>(My kits emulate the brightness step spacing of the original
+  backlight, and default to a 25:1 brightness range. The new TLD3
+  driver boards will allow user-adjustment of both the range and the
+  step spacing).</p>
+
+<h2>Color accuracy</h2>
+
+<div class=caption>
+  <a class=left href="led-CCFLgamut.png">
+    <img style="width:33.2%" src="led-CCFLgamut.png"/>
+  </a>
+  <a class=center href="led-GENgamut.png">
+    <img style="width:33.2%" src="led-GENgamut.png"/>
+  </a>
+  <a class=right href="led-NICHIAgamut.png">
+    <img style="width:33.2%" src="led-NICHIAgamut.png"/>
+  </a>
+  <p>
+    Above: Spectrometer gamut measurements of an HV121P01-100 screen
+    with its original CCFL backlight [left],<br />as fitted with an
+    LED strip using general-purpose white LEDs [center],<br />and an
+    LED strip using Nichia LEDs designed specifically for backlights
+    [right].
+    </p>
+</div>
+
+<p>A white LED does not produce the same spectrum as a CCFL even if
+  the white looks the same to the naked eye.  The general purpose
+  white LEDs used in all the other kits I've seen (as of 2016) have
+  the usual white = blue+yellow construction resulting in a
+  greenish-yellow-heavy spectra without much deep red; this is
+  especially badly suited to low-power IPS and AFFS screens.  Even
+  when white looks right, colors shift toward yellow with muted greens
+  and muddy, orangish reds.</p>
+
+<p>It's also impossible to guess exactly what LEDs you'll get with a
+  generic kit.  When I was still modding Chinese kits, I'd place
+  multiple orders for the same kit from the same vendor in the space
+  of a single month, and each used different LED strips with different
+  whitepoints.</p>
+
+<p>If color rendering and consistency is
+  important, my <a href="led-kit.shtml">'Daylight' kits</a> currently
+  use a single bin (Btc72P10d22) of <a href="NSSW157F-HG-E.pdf">Nichia
+  NSSW157FT-HG LEDs</a> specifically designed for backlights.  You can
+  see a gamut measurement of one of these strips in an actual AFFS
+  SXGA screen in <a href="led-NICHIAgamut.png">the right-hand plot above</a>.</p>
+
+<h2>Low-frequency PWM, high-frequency PWM and continuous drive</h2>
+
+<p>Pulse Width Modulation (PWM) performs dimming by rapidly switching
+  the backlight on and off at different duty cycles.  Phosphor
+  persistence in a CCFL smooths out the low-frequency PWM flicker.
+  There's no such smoothing with LEDs and some people vehemently
+  dislike LED-lit panels with low-frequency PWM brightness
+  controls.</p>
+
+<p>High-frequency PWM avoids flicker by switching the backlight on and
+  off at a much higher frequency, typically 20kHz instead of
+  200Hz. This eliminates any hint of flicker while retaining advantages
+  of PWM.</p>
+
+<p>Continuous-drive controllers (like my boards) change brightness by
+  varying the regulated drive current rather than switching the
+  backlight on and off.  Continuous drive is both flicker-free and
+  more power efficient at lower brightness settings.</p>
+
+<h2>Continuous drive and color shift</h2>
+
+<p>The color of an LED shifts slightly with drive voltage, drive
+  current, and junction temperature.  The color at 100% brightness
+  will not exactly match the color of the same LED at lower power.</p>
+
+<p>PWM only ever drives the LEDs either at full power or not at all,
+  so it's generally thought to be immune to color shift.  This is
+  incorrect; <a href="http://www.digikey.com/en/articles/techzone/2014/feb/led-color-shift-under-pwm-dimming">PWM
+  also shows color shift</a>.</p>
+
+<p>Color shift isn't really an issue in practice either with PWM or
+  continuous drive, at least not for these conversions.  Shift is
+  easily measurable, just as it is with the original CCFL, but not
+  particularly noticeable.</p>
+
+<div class=caption>
+  <img src="led-shift.png"/>
+  <p>Above: Measured chromaticity shift across the full brightness
+  ranges of an original CCFL as compared to two different LED
+  backlights operating in continuous-current mode.</p>
+</div>
+
+<h2>Other ThinkPad models</h2>
+
+<p>I've personally tested my driver boards with the X41, X60, X61, and
+  submodels.  Others have also fitted them to various T series
+  including the T61 and T500.</p>
+
+<p>The driver design assumes a 10V-20V internal power bus, active-high
+  backlight enable and ~6:1 active-high PWM dimming (logic low &lt;
+  1.0v, logic high &gt; 2.5V) The boards are fairly certain to work on
+  most other ThinkPads as is, though I've not tested this.  I'll add
+  other models as there's demand.</p>
+
+<!--#include virtual="toc.include" -->
+<!--#include virtual="footer1b.include" -->
+June 18, 2014<br>
+Updated April 23, 2016
+<!--#include virtual="footer2b.include" -->
+
+

@@ -1,0 +1,76 @@
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.shtml">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.shtml">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <ul>
+      <li>
+        <a id=toc_TLD1 href="led-TLD1.shtml">
+	  TLD1 schematics, design notes, and Gerber files
+	</a>
+      </li>
+      <li>
+        <a id=toc_TLD2 href="led-TLD2.shtml">
+	  TLD2 schematics, design notes, and Gerber files
+	</a>
+      </li>
+      <li>
+        <a id=toc_TLD3 href="led-TLD3.shtml">
+	  TLD3 schematics, design notes, and Gerber files
+	</a>
+      </li>
+      <li>
+        <a id=toc_strip href="led-strip.shtml">
+	  LED strip notes and Gerber files
+	</a>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.shtml">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.shtml">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+      </li>
+      <li>
+        <a id=toc_inverter href="led-inverter.shtml">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.shtml">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,222 @@
+<!--#include virtual="header1.include" -->
+#toc_unboosty
+<!--#include virtual="header2.include" -->
+<h1>The "Unboosty" Kit for Thinkpads</h1>
+<!--#include virtual="header3.include" -->
+
+<table class=kit>
+  <tr>
+    <th>unboosty</th>
+    <th>notes</th>
+    <th>dim range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="#pwm">PWM-mode mod</a></td>
+    <td>
+      buck-down, 8-12V output<br />
+      3 LED segments, 9.6V nominal</td>
+    <td>9:1</td>
+    <td class=tr>$15-20</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-unboosty-large.jpg">
+	<img src="led-unboosty-large.jpg" /></a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>Wide, customizable dimming range with continuous-drive mod</li>
+	<li class=neutral>Requires modification to work with Thinkpad brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Brightness can flicker with load</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>This kit is based on the same DF6113 boost controller
+  IC <a href="DF6113.pdf">[datasheet]</a> as
+  the <a href="led-simpleboost.shtml">"Simpleboost" kit</a>, but
+  arranged to use the inductor control as a low-side buck-down
+  converter(!)  The driver board expects to drive a constant-current
+  LED string at between 8 and 12 volts such as the usual 9.6V
+  constant-current strips that can be trimmed in groups of three
+  LEDs. This board requires modification, such as the mod below, to
+  work properly with a Thinkpad.</p>
+
+<p class=in style="color: #bb4400;">
+  <em>Update and Warning</em>: Oh well, it <em>seemed</em> like it worked
+  well enough.  I've since gotten boards that flicker noticably with
+  the slightest shift in input voltage, eg with processor load,
+  regardless of the mod used.  There's no correcting the problem no
+  matter how fancy the mod--- it's a consequence of lobotomizing a
+  boost controller to use it in buck mode.</p>
+
+<p class=in style="color: #bb4400;">
+  <em>Warning #2: As shipped, the boards I bought for evaluation were
+      configured to put out far too much current for the
+      12.1&quot;/255mm LED strips included.  Do not try to test this
+      kit without reading the modding page, or you'll probably damage
+      the LED strip!
+  </em>
+</p>
+
+<div class=caption>
+  <img class=schematic
+       src="led-unboosty-schematic.png" />
+  <p>Above: Schematic of stock, unmodified &quot;Unboosty&quot; LED
+    driver board</p>
+</div>
+
+<hr/>
+
+<h2 id="pwm">PWM-mode Mod</h2>
+
+<p>The PWM mod alters the driver board to use the Thinkpad's PWM
+  brightness signal as a direct backlight switching control. The PWM
+  frequency is 200Hz unless the OS changes it.  If backlight
+  flicker bothers you, definitely use <a href="led-kit.shtml">one of
+  my continuous-mode driver boards</a> instead.</p>
+
+<div class=caption>
+  <img class=schematic
+       src="led-unboosty-schematic-pwm.png" />
+  <p>Above: Schematic of the Unboosty driver board modified for
+    PWM-mode operation with a Thinkpad.  Red marks new or altered
+    components and connections, light gray shows removed
+    connections and components.</p>
+</div>
+
+
+<h3 class=center>parts needed</h3>
+<ol>
+  <li>1n4148 diode (SMD SOD-323 recommended, though through-hole works fine too)</li>
+  <li>2.2&ohm; resistor (SMD 1206 recommended)
+  <li>3.0&ohm; resistor (SMD 1206 recommended)
+  <li>Low-profile 47&micro;H or 68&micro;H inductor, eg, Bourns SRR6028 <i>[only if <a href="led-inverter.shtml#clearance">grafting onto a non-tablet inverter</a>]</i></li>
+  <li>A few centimeters of thin wire <i>[if building a trimmed version]</i></li>
+</ol>
+
+<p>Specific package recommendations above are known to fit, but feel
+  free to mix whatever surface mount or through-hole components seem
+  convenient. Resistor values should be 1% tolerance for best
+  results.</p>
+
+<h3 class=center>full-sized mod</h3>
+
+<p>Most Thinkpad modders want the trimmed version of the mod described
+in the next section. This is a less complicated process that leaves
+the original full-sized board in-tact for alternate uses.
+
+<ol>
+  <li>Remove C5 completely.</li>
+  
+  <li>Remove R3 completely.</li>
+  
+  <li>Replace the current sense resistors R4 and R7 with 2.2&ohm;
+    and 3.0&ohm; values. Alternately, a single 1.3&ohm; resistor is
+    a close substitution, but gives slightly lower output.</li>
+  
+  <li>Solder the cathode of a 1N4148 diode to the left hand pad of
+    the former R3; solder the anode to the lower exposed pad of the
+    former C5.</li>
+</ol>
+
+<div class=caption>
+  <a href="led-unboosty-pwm-untrimmed-large.jpg">
+    <img src="led-unboosty-pwm-untrimmed-large.jpg" /></a>
+  <p>Above: LED driver board after PWM mod.  Changes
+    from stock are circled in red.</p>
+</div>
+
+<p>After modding, the DIM input is now the board enable and the
+  ENA input is now a PWM-compatible brightness input (they're
+  mostly interchangeable really, but this arrangement is slightly
+  preferable). The board will put out approximately 320mA at max
+  brightness. Minimum brightness depends somewhat on PWM
+  frequency; the PWM signal switches the chip enable and the
+  converter has some turn-on lag.  At the BIOS default of 60Hz,
+  min brightness is about 36mA average for an adjustment range of
+  9:1.</p>
+
+<h3 class=center>trimmed mod</h3>
+
+<p>If there's no space to stash the LED driver PCB somewhere in
+  the lid (or if you simply find adding the extra board
+  inelegant), the driver PCB can be trimmed to fit directly
+  onto a stock Thinkpad inverter board. The circuit is the same as
+  above, but we need to relocate some components.</p>
+<ol>
+  <li>Begin by cutting along the indicated lines; diagonal cutters
+    will make a clean, easy cut.  That's all the trimming necessary to
+    fit onto a tablet-model inverter, but if we're grafting this board onto
+    a non-tablet inverter, we'll also need to file down the top and
+    bottom edges by about a millimeter. It might also be necessary
+    to swap for a lower-profile inductor. See
+    the <a href="led-inverter.shtml#clearance">section about
+    dimensional restrictions on the inverter page</a>.</li>
+</ol>
+
+<div class=caption>
+  <a href="led-unboosty-cut-large.jpg">
+    <img src="led-unboosty-cut-large.jpg" /></a>
+  <p>Above: The full LED driver is too large to graft onto an
+    existing Thinkpad inverter. Cut the PCB board at the dotted
+    lines using diagonal cutters to make it small enough to
+    fit. Some of the components on the cut-off sections will need to
+    be relocated onto the remaining PCB.</p>
+</div>    
+
+<p>The large orange 1&micro;F tantalum input capacitor (C6), the
+  10&micro;F ceramic output filter capacitor (C7), and 10&ohm;
+  input decoupling resistor (R1) that were cut off must all be
+  added back onto the remaining board section.  Keep in mind the
+  the tantalum capacitor is polarized!</p>
+
+<ol start=2>
+  <li>Relocate output filter cap C7 to the remaining section of the
+    board.  It should fit nicely between L1 and D1, if not, move L1 a
+    bit to the left. C7 is non-polarized; solder one side to the lower
+    pad of D1 and the side other to the upper pad of L1 using an additional
+    wire lead.</li>
+  <li>Relocate the tantalum input cap C6 to the remaining section of
+    board; it will fit in the space to the left of Q1.  In the picture
+    below it's mounted upside down for convenience. Use additional
+    wire leads to solder the + side to the lower pad of D1 and the
+    relocated C7 (the red wire in the picture below) and the - side of
+    the cap to ground, e.g.  the lower pad of R4 (connected directly
+    via a solder bridge in the picture below).</li>
+  <li>Rather than reusing R1, solder a through-hole resistor from
+    IC pin 1 to the + side of the relocated tantalum capacitor
+    C6. Any value between 10&ohm; and 200&ohm; is fine. The schematic
+    indicates 10&ohm;, I actually used 100&ohm; in the pictures.</li>
+  <li>Solder one lead of a 4.7k&ohm; resistor to pin 4 of the IC; the
+    other lead becomes our DIM input.</li>
+  <li>Solder the anode of a 1N4148 diode to pin 4 of the IC as
+    well.  The cathode becomes our ENA input.</li>
+  <li>Make a solder pad for the LED- connection by scraping the
+      conformal covering off the trace right under the 'D1' printing,
+    and tinning the exposed copper.</li>
+</ol>
+
+<div class=caption>
+  <a href="led-unboosty-pwm-trimmed-large.jpg">
+    <img src="led-unboosty-pwm-trimmed.jpg" 
+	 onmouseover="this.src='led-unboosty-pwm-trimmed-over.jpg'"
+	 onmouseout="this.src='led-unboosty-pwm-trimmed.jpg'"/></a>
+  <p>Above: Trimmed LED driver board with completed PWM mod
+    intended to be soldered onto a Thinkpad inverter.  Mouse over
+    the image to highlight and label the connection points.</p>
+</div>
+
+<p>The trimmed driver PCB is ready to
+  be <a href="led-inverter.shtml#graft">grafted onto an existing
+  Thinkpad backlight inverter</a>. </p>
+
+<!--#include virtual="toc-chinese.include" -->
+<!--#include virtual="footer1.include" -->
+June 21, 2014
+<!--#include virtual="footer2.include" -->

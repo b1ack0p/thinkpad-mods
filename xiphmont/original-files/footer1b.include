@@ -1,0 +1,11 @@
+<div style="margin-top: 2.5em;
+            clear: both;
+	    border-top-right-radius: 15px;
+	    border-top-left-radius: 15px;
+            background-image: url('led-footer5.jpg');
+            background-repeat: no-repeat;">
+  <div style="height: 200px;">&nbsp;</div>
+  <address style="border: 0px;
+                  margin-top: 0px;
+                  border-radius: 0px;">&mdash;Monty
+    (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
