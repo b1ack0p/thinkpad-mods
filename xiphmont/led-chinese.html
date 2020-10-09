@@ -1,0 +1,502 @@
+<!--#include virtual="header1.include" -->
+<!--#include virtual="header2.include" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <link rel="icon" href="M.ico" type="image/x-icon"/>
+    <link rel="stylesheet" title="default demosheet" media="screen" href="monty.css" type="text/css"/>
+    <style>
+     {
+         margin-left: -1.5em;
+         padding-left: 1.5em;
+         color: #dd7700;
+         background-image: url('arrow.png');
+         background-position: 0px .1em;
+         background-size: 1em;
+         background-repeat: no-repeat;
+       }
+    </style>
+    <title>Thinkpad Hacking: LED Backlight Conversions</title>
+  </head>
+
+  <body>
+    <div id="logo">
+        <img src="M.png" alt="M"/>
+	<div id=logoinner>
+
+<h1>LED Backlight Kits for Thinkpads</h1>
+<!--#include virtual="header3.include" -->
+<div class="or">
+  for the X60, X60s, X60t, X61t, X61s, and X61t in particular
+</div>
+</div>
+<div id=topnav>
+&gt;
+<a href="led-backlight.html">About</a> |
+<a href="led-kit.html">LED Kits</a> |
+<a href="led-kit.html#order">Order</a> |
+<a href="led-panel.html">Installation</a> |
+<a href="led-kit.html#FAQ">FAQ</a> |
+<a href="mailto:xiphmont@gmail.com">Contact</a>
+&lt;
+</div>
+<div id=logospacer>
+</div>
+</div>
+
+<p class=in style="color: #bb4400; margin-bottom:2em;">
+  <em>Update 20150526 and Warning</em>: These modding pages are
+  unmaintained; they're still here for historical reasons.  All of the
+  LED kits I've tried from Chinese vendors have one drawback or
+  another and I want the best possible conversion results.  Rather
+  than coming up with more and more complicated modifications to fix
+  the shortcomings of existing kits, I eventually decided it was much
+  easier to design and make <a href="led-kit.html">my own driver
+  boards that were designed specifically for Thinkpads</a>.
+
+<p>Several vendors sell generic CCFL to LED backlight upgrade
+  kits, and a few sell upgrade kits tailored to specific Thinkpad
+  models.  The generic kits can be modded to work with a Thinkpad
+  reasonably easily, and the specific kits can be modded to work
+  better than they would otherwise.</p>
+
+<p>A partial list of vendors that carry at least one of the kits
+below:</p>
+<ul>
+  <li><a href="http://www.xccfl.com"><b>xCCFL.com</b></a><br/> Generic
+    and Thinkpad-specific kits. The Thinkpad-specific kits use
+    the <a href="led-fancyboost.html">Fancyboost</a>, no idea what
+    the generic laptop kits use (6/2014).
+  </li>
+
+  <li><a href="http://www.iccfl.com"><b>iCCFL.com</b></a><br/> Generic
+    and Thinkpad-specific kits. The Thinkpad-specific
+    kits used the <a href="led-fancyboost.html">Fancyboost</a>, and
+    the generic laption kits the
+    <a href="led-unboostyB.html">Unboosty-Blue</a>
+    and <a href="led-cheapybuck.html">Cheapybuck</a> (9/2014).
+  </li>
+  
+  <li><a href="http://www.ebay.com/usr/creatall88"><b>CreatAll</b></a><br/>
+  Generic LED conversion kits, laptop kits most recently using
+  the <a href="led-unboosty.html">Unboosty</a> (6/2014).
+  </li>
+
+  <li><a href="http://www.lcd-chip.com/"><b>lcd-chip.com</b></a><br/>
+  Generic LED conversion kits.  The laptop kits delivered used
+  the <a href="led-simpleboost.html">Simpleboost</a>
+  and <a href="led-cheapybuck.html">Cheapybuck</a> (7/2014).
+  </li>
+
+  <li><a href="http://www.ccfloffer.com/"><b>ccfloffer.com</b></a><br/>
+  Generic LED conversion kits. They advertise what looks like an older
+  variant of the <a href="led-cheapybuck.html">Cheapybuck</a>, but
+  apparently actually ship
+  the <a href="led-unboostyB.html">Unboosty-Blue</a> (9/2014).
+  </li>
+</ul>
+
+<p>As frustrating as it may be, the Chinese vendors switch up specific
+  kits all the time. They usually consider the kits to be interchangeable
+  and send whatever they have in stock that week, product description
+  and photos be damned.  You don't know for sure what you're getting
+  until you look at the driver board after the kit arrives.  Below are
+  a few of the kits in the wild as of August 2014.</p>
+
+<hr/>
+
+<h2><a href="led-simpleboost.html">Driver Board 1: Simpleboost</a></h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>notes</th>
+    <th>dim&nbsp;range</th>
+      <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="led-simpleboost.html#pwm">PWM-mode mod</a></td>
+    <td>
+      boost, 30-50V output<br />
+      10 LED strings minimum for 20V input</td>
+    <td>6:1</td>
+    <td class=tr>$15-$20</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-simpleboost-large.jpg">
+	<img src="led-simpleboost-large.jpg" />
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>The PWM mod is simple to make both in full-sized and
+	  trimmed form using either surface mount or through-hole
+	  components.</li>
+	<li class=neutral>Requires modification to work with Thinkpad
+	brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Tighter requirements for LED
+	  strips than the other kits (each series string must be at least 10 LEDs)</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>This driver is a simple boost convertor with constant-current
+  output.  Some vendors sell it with an additional flat-ribbon
+  connector, most sell it with the ribbon connector missing and
+  those solder pads left bare as in the pic above.</p>
+
+<p>The LEDs provided with the kit must be arranged in at least 10S
+  strings for Thinkpads with internal 20V power (like the
+  X60/61-series) else the LEDs will never go out completely even
+  when the machine is 'off'. It seems these 12.1&quot;/255mm kits
+  usually come with 60 LEDs in 10S/6P; that works fine.</p>
+
+<p>This board requires modification to work with a Thinkpad. It can be
+  trimmed and grafted onto existing inverter boards easily.</p>
+
+<a class=more href="led-simpleboost.html">...more information</a>
+
+<hr />
+<h2><a href="led-fancyboost.html">Driver Board 2: Fancyboost</a></h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>notes</th>
+    <th>dim&nbsp;range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl>stock (no mod)</td>
+    <td rowspan=2>
+      boost, 30-50V output, fault sensing<br />
+      8 LED strings minimum for 20V input</td>
+    <td>6:1</td>
+    <td class=tr rowspan=2>$55-$70</td>
+  </tr>
+  <tr>
+    <td><a href="led-fancyboost.html#hf">high-frequency PWM mod</a></td>
+    <td>5.5:1</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-fancyboost-large.jpg">
+	<img src="led-fancyboost-large.jpg" />
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>Comes in kits that allow drop-in replacement of CCFL inverter with no soldering</li>
+	<li class=plus>Best fault protection of any kit; will shut off
+	on any over-range condition rather than blowing a fuse on the
+	Thinkpad.
+	<li class=neutral>Uses low-frequency PWM; requires modification to eliminate flicker</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Several times more expensive than other kits</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<p>This is a much smaller boost controller than the Simpleboost
+  kit with a nicer driver IC. I've only seen it pre-grafted onto
+  inverter boards in specialized kits for specific laptop models,
+  usually replacing the coils under the copper-colored EMI
+  shield. In the pic above, it's been fitted to an X61T inverter
+  board as part of an X60T/X61T kit from xccfl.com.</p>
+
+<p>These model-specific kits can be dropped right into a Thinkpad
+  without any modification or soldering.  The stock board is set up
+  to use low-frequency PWM for a 6:1 brightness control range. With
+  a simple mod (that does require some soldering) it can use
+  high-frequency (24kHz) PWM instead, eliminating any hint of
+  flicker but reducing the dimmable range slightly.  These kits are
+  pricey: currently $35 to $45 plus DHL express shipping from China
+  (another $20-$30).</p>
+
+<a class=more href="led-fancyboost.html">...more information</a>
+
+<hr/>
+<h2><a href="led-unboosty.html">Driver Board 3: Unboosty</a></h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>notes</th>
+    <th>dim&nbsp;range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="led-unboosty.html#pwm">PWM-mode mod</a></td>
+    <td>
+      buck, 8-12V output<br />
+      3 LED segments, 9.6V nominal</td>
+    <td>9:1</td>
+    <td class=tr>$15-20</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-unboosty-large.jpg">
+	<img src="led-unboosty-large.jpg" />
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>Wide, customizable dimming range with continuous-drive mod</li>
+	<li class=neutral>Requires modification to work with Thinkpad brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Brightness can flicker with load</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>At first I thought this was a slightly different version of the
+  Simpleboost as it uses mostly the same components and the same boost
+  controller IC.  Upon closer inspection, it's arranged as a low-side
+  buck-down controller instead!  This is a weird/clever design that
+  mostly ignores the IC's spec sheet, but works well.  The board can
+  be set up to drive any 9.6V constant-current LED backlight
+  strip.</p>
+
+<p class=in style="color: #bb4400;">
+  <em>Update and Warning</em>: Oh well, it <em>seemed</em> like it worked
+  well enough.  I've since gotten boards that flicker noticably with
+  the slightest shift in input voltage, eg with processor load,
+  regardless of the mod used.  There's no correcting the problem no
+  matter how fancy the mod--- it's a consequence of lobotomizing a
+  boost controller to use it in buck mode.</p>
+
+<p class=in style="color: #bb4400;">
+  <em>Warning #2: As shipped, the boards I bought for evaluation were
+      configured to put out far too much current for the
+      12.1&quot;/255mm LED strips included.  Do not try to test this
+      kit without reading the modding page, or you'll probably damage
+      the LED strip!
+  </em>
+</p>
+
+<p>This board requires modification to work with a Thinkpad. It is a
+  little harder to graft onto existing inverters due to its size, but
+  it can be done.</p>
+
+<a class=more href="led-unboosty.html">...more information</a>
+
+<hr/>
+<h2><a href="led-unboostyB.html">Driver Board 4: Unboosty-Blue</a></h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>notes</th>
+    <th>dim&nbsp;range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="led-unboostyB.html#pwm">PWM-mode mod</a></td>
+    <td>
+      buck, 8-12V output<br />
+      3 LED segments, 9.6V nominal</td>
+    <td>8:1</td>
+    <td class=tr rowspan>$12-17</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-unboostyB.jpg">
+	<img src="led-unboostyB.jpg" />
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>PCB layout more conducive to compact modding than original Unboosty</li>
+	<li class=neutral>Requires modification to work with Thinkpad brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>Brightness can flicker with load</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>This appears to be another vendor's direct copy of the Unboosty kit
+  above.  It's the same circuit on a different PCB using a smaller
+  inductor and configured to put out lower current by default.</p>
+
+<p>Like the Unboosty, this kit requires modification to work with a
+  Thinkpad. It's a bit easier to render into a compact form.</p>
+
+<p class=in style="color: #bb4400;">
+  <em>Update and Warning</em>: Like the original Unboosy, these boards
+  can flicker noticably with the slightest shift in input voltage, eg
+  with processor load, regardless of the mod used.  There's no
+  correcting the problem no matter how fancy the mod--- it's a
+  consequence of lobotomizing a boost controller to use it in buck
+  mode.</p>
+
+<a class=more href="led-unboostyB.html">...more information</a>
+
+<hr />
+<h2><a href="led-cheapybuck.html">Driver Board 5: Cheapybuck</a></h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>notes</th>
+    <th>dim range</th>
+    <th>~cost</th>
+  </tr>
+  <tr>
+    <td class=tl><a href="led-cheapybuck.html#pwm">PWM-mode mod</a></td>
+    <td rowspan=2>
+      buck, 8-12V output<br />
+      3 LED segments, 9.6V nominal</td>
+    <td>6:1</td>
+    <td class=tr rowspan=2>$10-12</td>
+  </tr>
+  <tr>
+    <td><a href="led-cheapybuck.html#cont">continuous-drive mod</a></td>
+    <td>5.25:1</td>
+  </tr>
+  <tr>
+    <th colspan=4>
+      <a href="led-cheapybuck-large.jpg">
+	<img src="led-cheapybuck-large.jpg" />
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <td colspan=4>
+      <ul>
+	<li class=plus>Cheapest of the kits</li>
+	<li class=plus>Can be trimmed to much smaller size than other kits</li>
+	<li class=neutral>Requires modification to work with Thinkpad brightness controls</li>
+	<li class=minus>Narrow dimming range</li>
+	<li class=minus>No fault protection; any error could cause it
+	  to (literally) go up in flames.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<p>This board is sold by multiple vendors in 'non-dimmable' LED
+  kits. Those I've contacted are very very insistent there's
+  no way this driver board can dim, and I'd need to buy a
+  different [more expensive] kit to do so.</p>
+
+<p>Pah! It dims perfectly well.  The datasheet is very clear on
+  that point, as are actual test results.  Like with the other
+  drivers, PWM mode allows a 6:1 dimming range.  The
+  output is compatible with 9.6V constant-current LED strips.</p>
+
+<p>This is the cheapest of the boards/kits, going for as little as
+  $6+shipping, though that will come out to more after
+  considering the parts needed for the Thinkpad-required
+  modifications.  This is also the smallest of the driver boards
+  and, fitted with a lower profile inductor, could possibly squeeze into
+  places the other kits would not.</p>
+
+<a class=more href="led-cheapybuck.html">...more information</a>
+
+<!--#include virtual="toc-chinese.include" -->
+<hr />
+<h2>[Index]</h2>
+<ul class=toc>
+
+  <li>
+    <a id=toc_backlight href="led-backlight.html">
+      Converting ThinkPads to LED Backlighting
+    </a>
+    <div>
+      FAQ and general background information for converting classic
+      ThinkPads from CCFL to LED backlighting
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_kit href="led-kit.html">
+      Kits and Parts for LED Backlight Conversions
+    </a>
+    <div>
+      Everything needed to update a CCFL ThinkPad to LED
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_panel href="led-panel.html">
+      Installing the LED Backlight
+    </a>
+    <div>
+      Removing the CCFL, preparing the panel for easy LED
+      installation, fitting the LED strip for optimal brightness and
+      color
+    </div>
+  </li>
+
+  <li>
+    <a id=toc_dummy>
+    Other Assorted Technical Information and Backlight Mods
+    </a>
+    <ul>
+      <li>
+        <a id=toc_chinese href="led-chinese.html">
+      	  Chinese Vendors, Generic LED Backlight Parts, Kits, and Mods
+        </a>
+        <ul>
+          <li>		
+    	    <a id=toc_simpleboost href="led-simpleboost.html">
+              Modding the &quot;Simpleboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_fancyboost href="led-fancyboost.html">
+              Modding the &quot;Fancyboost&quot Kit
+	    </a>
+          </li>
+          <li>
+    	    <a id=toc_unboosty href="led-unboosty.html">
+              Modding the &quot;Unboosty&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_unboostyB href="led-unboostyB.html">
+              Modding the &quot;Unboosty-Blue&quot Kit
+	    </a>
+          </li>
+          <li>
+	    <a id=toc_cheapybuck href="led-cheapybuck.html">
+              Modding the &quot;Cheapybuck&quot Kit
+	    </a>
+          </li>
+        </ul>
+      </li> 
+      <li>
+        <a id=toc_inverter href="led-inverter.html">
+      	  Connecting a General-Purpose LED Backlight Driver to a ThinkPad
+        </a>
+      </li>
+      <li>
+        <a id=toc_gamut href="led-gamut.html">
+          LED Backlight Color Gamut Measurements
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--#include virtual="footer1.include" -->
+<address>&mdash;Monty
+  (<a href="mailto:monty@xiph.org">monty@xiph.org)</a>
+
+August 10, 2014
+<!--#include virtual="footer2.include" -->
+    </address>
+  </body>
+</html>
