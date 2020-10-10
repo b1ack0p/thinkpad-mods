@@ -276,6 +276,18 @@
 	  border: 0px;
 	  background: #f0f0ff;
       }
+      .rightpic2 {
+          clear: right;
+          float: right;
+          width: 20%;
+          margin-left: 2em;
+          margin-right: -60px;
+          margin-top: .2em;
+          margin-bottom: 1em;
+	  border-radius: 15px;
+	  border: 0px;
+	  background: #f0f0ff;
+      }
 
       .rightlink {
           clear: right;
