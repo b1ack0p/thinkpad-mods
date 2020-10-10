@@ -3,7 +3,7 @@
 <li>
 <a href="https://b1ack0p.github.io/thinkpad-mods/xiphmont/">xiphmont's ThinkPad LED Mod
   </a>
-<li>Battery re-celling
+<li>ThinkPad Battery re-celling
   </li>
  <li>ThinkPad T60/T61 FrankenPad Mod
   </li>
